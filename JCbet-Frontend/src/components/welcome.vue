@@ -1,24 +1,25 @@
 /* eslint-disable */
 <template>
-  <title>JCbet</title>
-  <div class="row">
-    <div class="col">
+  <body>
+  <div style = "height: 650px;">
       <div
+          class = "col"
           style="
-          margin-left: 200px;
-          margin-top: 100px;
+          top: 150px;
+          left: 1100px;
           text-align: left;
-          max-width: 400px;
+          max-width: 350px;
+          max-width: 350px;
           line-height: 50px;">
-        <div class = "row" style = "padding: 10px">
+        <div class = "row" style = "padding: 10px;">
         <label style="color:whitesmoke;" for="exampleFormControlInput1" class="form-label">邮箱地址</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        <input type="text" class="form-control1" id="FormControlInput1" placeholder="name@example.com">
         </div>
         <div class = "row" style = "padding: 10px">
         <label style="color:whitesmoke;" for="exampleFormControlInput1" class="form-label">密码</label>
-        <input type="password" class="form-control" id="exampleFormControlInput1">
+        <input type="text" class="form-control2" id="FormControlInput2">
         </div>
-        <div class = "row" style = "padding: 10px">
+        <div class = "row" style = "margin-top: 20px">
           <div class = "col">
         <button
             class="btn btn-outline-light"
@@ -41,11 +42,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <img src="../assets/whph.png">
-    </div>
   </div>
+  </body>
 </template>
 
 <script>
@@ -59,8 +57,20 @@ export default {
   width: 200px;
 }
 
-input{
-  background-color: #17181a;
+div{
+  position: relative;
+}
+body {
+  margin: 0;
+  height: 100%;
+  background-image: url('../assets/background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+input[type=text]{
+  background-color: #6c7075;
+  border: 2px solid #ccc;
   color: whitesmoke;
 }
 </style>
