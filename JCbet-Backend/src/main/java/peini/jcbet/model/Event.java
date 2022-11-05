@@ -1,6 +1,7 @@
 package peini.jcbet.model;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -20,12 +21,17 @@ public class Event {
   private Date startTime;
   private Date endTime;
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-  private Set<Team> teamSet;
+  private List<Team> teamList;
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-  private Set<User> userSet;
+  private List<User> userList;
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-  private Set<Bet> betSet;
+  private List<Bet> betList;
   private EventStatus status;
+
+  enum EventStatus {
+    OPEN, START, CLOSE, END
+
+  }
 
   public Event() {
     this.status = EventStatus.OPEN;
@@ -72,20 +78,20 @@ public class Event {
     return endTime;
   }
 
-  public void setTeam(Set<Team> teamSet) {
-    this.teamSet = teamSet;
+  public void setTeam(List<Team> teamList) {
+    this.teamList = teamList;
   }
 
   public void addTeam(Team team) {
-    this.teamSet.add(team);
+    this.teamList.add(team);
   }
 
   public boolean removeTeam(Team team) {
-    return this.teamSet.remove(team);
+    return this.teamList.remove(team);
   }
 
-  public Set<Team> getTeamSet() {
-    return teamSet;
+  public List<Team> getTeamList() {
+    return teamList;
   }
 
   public void setStatus(EventStatus status) {
@@ -96,23 +102,23 @@ public class Event {
     return status;
   }
 
-  public void setUserSet(Set<User> userSet) {
-    this.userSet = userSet;
+  public void setUserList(List<User> userList) {
+    this.userList = userList;
   }
 
   public void addUser(User user) {
-    userSet.add(user);
+    userList.add(user);
   }
 
-  public Set<User> getUserSet() {
-    return userSet;
+  public List<User> getUserList() {
+    return userList;
   }
 
-  public void setBetSet(Set<Bet> betSet) {
-    this.betSet = betSet;
+  public void setBetList(List<Bet> betList) {
+    this.betList = betList;
   }
 
-  public Set<Bet> getBetSet() {
-    return betSet;
+  public List<Bet> getBetList() {
+    return betList;
   }
 }

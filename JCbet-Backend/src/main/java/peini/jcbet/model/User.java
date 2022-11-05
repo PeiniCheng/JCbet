@@ -1,7 +1,11 @@
 package peini.jcbet.model;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -12,16 +16,15 @@ public class User {
   private String password;
   private int token;
 
-  public User(String email) {
+  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  private List<Bet> betList;
+
+  public User() {
     profilePic = "";
-    this.email = email;
+    this.email = "";
     username = "";
     password = "";
     token = 0;
-  }
-
-  public User() {
-
   }
 
   public void setProfilePic(String profilePic) {
@@ -30,6 +33,10 @@ public class User {
 
   public String getProfilePic() {
     return profilePic;
+  }
+
+  public void setEmail(String email){
+    this.email = email;
   }
 
   public String getEmail() {
