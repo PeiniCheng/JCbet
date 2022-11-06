@@ -22,9 +22,9 @@ public class Event {
   private Date endTime;
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   private List<Team> teamList;
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
   private List<User> userList;
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
   private List<Bet> betList;
   private EventStatus status;
 
