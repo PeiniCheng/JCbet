@@ -1,1 +1,2 @@
 rootProject.name = 'JCbet-Backend'
+include 'JCbet-Backend'
