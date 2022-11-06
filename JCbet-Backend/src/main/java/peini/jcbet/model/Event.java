@@ -20,7 +20,7 @@ public class Event {
   private String image;
   private Date startTime;
   private Date endTime;
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
   private List<Team> teamList;
 
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
