@@ -14,7 +14,9 @@
     "bootstrap": "^5.2.2",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
+    "express": "^4.18.2",
     "jquery": "^3.6.1",
+    "serve-static": "^1.15.0",
     "vue": "^3.2.13",
     "vue-router": "^4.1.6",
     "webpack-merge": "^5.8.0"
@@ -24,9 +26,10 @@
     "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-service": "^4.0.5",
+    "@vue/cli-service": "^5.0.8",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
+    "eslint-plugin-vue": "^8.0.3",
+    "vue-template-compiler": "^2.7.13"
   },
   "eslintConfig": {
     "root": true,
