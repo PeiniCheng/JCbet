@@ -31,6 +31,7 @@
         </button>
           </div>
           <div class = "col-8">
+            <router-link to="/sign">
             <button
                 class="btn btn-outline-light"
                 type="button"
@@ -39,6 +40,7 @@
             >
               还没有账号？点击注册
             </button>
+            </router-link>
           </div>
         </div>
       </div>

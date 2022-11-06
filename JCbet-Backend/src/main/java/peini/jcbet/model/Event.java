@@ -22,8 +22,7 @@ public class Event {
   private Date endTime;
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   private List<Team> teamList;
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-  private List<User> userList;
+
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
   private List<Bet> betList;
   private EventStatus status;
@@ -102,17 +101,6 @@ public class Event {
     return status;
   }
 
-  public void setUserList(List<User> userList) {
-    this.userList = userList;
-  }
-
-  public void addUser(User user) {
-    userList.add(user);
-  }
-
-  public List<User> getUserList() {
-    return userList;
-  }
 
   public void setBetList(List<Bet> betList) {
     this.betList = betList;

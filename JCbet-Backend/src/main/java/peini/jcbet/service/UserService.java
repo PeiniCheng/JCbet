@@ -1,5 +1,7 @@
 package peini.jcbet.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +15,20 @@ public class UserService {
   UserRepository userRepository;
 
   @Transactional
+  public User getUser(String email) throws IllegalArgumentException {
+    if (email == null || email.trim().length() == 0) {
+      throw new IllegalArgumentException("empty email");
+    }
+    User user = userRepository.findByEmail(email);
+    if (user == null) {
+      throw new IllegalArgumentException("User does not exist!");
+    }
+    return user;
+  }
+
+  @Transactional
   public User createUser(String email) throws IllegalArgumentException {
-    if (userRepository.findByEmail(email) != null) {
+    if (getUser(email) != null) {
       throw new IllegalArgumentException("email already exists");
     }
     if(Pattern.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
@@ -32,7 +46,7 @@ public class UserService {
     if (username == null || username.trim().length() == 0) {
       throw new IllegalArgumentException("empty username");
     }
-    User user = userRepository.findByEmail(email);
+    User user = getUser(email);;
     user.setUsername(username);
     return userRepository.save(user);
   }
@@ -43,7 +57,7 @@ public class UserService {
     if (password == null || password.trim().length() == 0) {
       throw new IllegalArgumentException("empty password");
     }
-    User user = userRepository.findByEmail(email);
+    User user = getUser(email);;
     user.setPassword(password);
     return userRepository.save(user);
   }
@@ -54,8 +68,20 @@ public class UserService {
     if (path == null || path.trim().length() == 0) {
       throw new IllegalArgumentException("no image");
     }
-    User user = userRepository.findByEmail(email);
+    User user = getUser(email);;
     user.setProfilePic(path);
     return userRepository.save(user);
   }
-}
+
+  @Transactional
+  public void deleteUser(String email) throws IllegalArgumentException {
+    User user = getUser(email);
+    userRepository.delete(user);
+  }
+
+  @Transactional
+  public List<User> getAllCustomers() {
+    ArrayList<User> userList = userRepository.findAllByOrderByUsername();
+    return userList;
+  }
+  }

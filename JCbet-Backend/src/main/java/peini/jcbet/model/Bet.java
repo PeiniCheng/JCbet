@@ -18,10 +18,8 @@ public class Bet {
   @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   private User user;
 
-  public Bet(User user) {
-    this.user = user;
-    token = 0;
-  }
+  @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  private Event event;
 
   public Bet() {
 
@@ -53,5 +51,13 @@ public class Bet {
 
   public User getUser() {
     return user;
+  }
+
+  public void setEvent(Event event) {
+    this.event = event;
+  }
+
+  public Event getEvent(){
+    return event;
   }
 }
