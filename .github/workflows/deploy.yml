@@ -1,0 +1,30 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy Backend to Heroku
+        uses: AkhileshNS/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: "bb206aa4-ce4d-48eb-ba64-0cb0501bdc56"
+          heroku_app_name: "jcbet-backend-1"
+          heroku_email: "peini.cheng@mail.mcgill.ca"
+          dontuseforce: false
+  frontend:
+    needs: backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy Frontend to Heroku
+        uses: AkhileshNS/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: "bb206aa4-ce4d-48eb-ba64-0cb0501bdc56"
+          heroku_app_name: "jcbet-frontend-1"
+          heroku_email: "peini.cheng@mail.mcgill.ca"
+          dontuseforce: false
