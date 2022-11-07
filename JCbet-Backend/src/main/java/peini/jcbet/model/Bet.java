@@ -13,13 +13,10 @@ public class Bet {
   @GeneratedValue
   private long id;
   @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-  private Team choice;
+  private EventTeam choice;
   private int token;
   @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   private User user;
-
-  @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-  private Event event;
 
   public Bet() {
 
@@ -29,11 +26,11 @@ public class Bet {
     return id;
   }
 
-  public void setChoice(Team choice) {
+  public void setChoice(EventTeam choice) {
     this.choice = choice;
   }
 
-  public Team getChoice() {
+  public EventTeam getChoice() {
     return choice;
   }
 
@@ -53,11 +50,4 @@ public class Bet {
     return user;
   }
 
-  public void setEvent(Event event) {
-    this.event = event;
-  }
-
-  public Event getEvent(){
-    return event;
-  }
 }

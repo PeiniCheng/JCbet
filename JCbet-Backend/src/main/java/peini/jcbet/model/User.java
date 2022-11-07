@@ -14,7 +14,7 @@ public class User {
   private String email;
   private String username;
   private String password;
-  private int token;
+  private double token;
 
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   private List<Bet> betList;
@@ -59,19 +59,35 @@ public class User {
     return password;
   }
 
-  public void setToken(int token) {
+  public void setToken(double token) {
     this.token = token;
   }
 
-  public void addToken(int token) {
+  public void addToken(double token) {
     this.token += token;
   }
 
-  public void deductToken(int token) {
+  public void deductToken(double token) {
     this.token -= token;
   }
 
-  public int getToken() {
+  public double getToken() {
     return token;
+  }
+
+  public List<Bet> getBetList() {
+    return betList;
+  }
+
+  public void setBetList(List<Bet> betList) {
+    this.betList = betList;
+  }
+
+  public void addBet(Bet bet){
+    betList.add(bet);
+  }
+
+  public void removeBet(Bet bet){
+    betList.remove(bet);
   }
 }

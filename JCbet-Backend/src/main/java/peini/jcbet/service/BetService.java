@@ -5,10 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import peini.jcbet.dao.BetRepository;
 import peini.jcbet.dao.EventRepository;
+import peini.jcbet.dao.EventTeamRepository;
 import peini.jcbet.dao.TeamRepository;
 import peini.jcbet.dao.UserRepository;
 import peini.jcbet.model.Bet;
 import peini.jcbet.model.Event;
+import peini.jcbet.model.EventTeam;
 import peini.jcbet.model.Team;
 import peini.jcbet.model.User;
 
@@ -20,7 +22,7 @@ public class BetService {
   @Autowired
   UserRepository userRepository;
   @Autowired
-  EventRepository eventRepository;
+  EventTeamRepository eventTeamRepository;
 
   @Transactional
   public Bet getBet(long betId) throws IllegalArgumentException {
@@ -32,15 +34,15 @@ public class BetService {
   }
 
   @Transactional
-  public Bet createBet(String email, String choice, long eventId, int amount) throws IllegalArgumentException {
+  public Bet createBet(String email, long eventTeamId, int amount) throws IllegalArgumentException {
     Bet bet = new Bet();
     User user = getUser(email);
-    Event event = getEvent(eventId);
-    Team team = getTeam(choice);
-    bet.setEvent(event);
-    bet.setChoice(team);
+    EventTeam eventTeam = getEventTeam(eventTeamId);
+    bet.setChoice(eventTeam);
     bet.setUser(user);
     bet.setToken(amount);
+    user.addBet(bet);
+    eventTeam.addBet(bet);
     return betRepository.save(bet);
   }
 
@@ -49,6 +51,14 @@ public class BetService {
     Bet bet = getBet(betId);
     bet.setToken(amount);
     return betRepository.save(bet);
+  }
+
+  @Transactional
+  public void deleteBet(long betId) throws IllegalArgumentException {
+    Optional<Bet> bet = betRepository.findById(betId);
+    bet.get().getUser().removeBet(bet.get());
+    bet.get().getChoice().removeBet(bet.get());
+    betRepository.delete(bet.get());
   }
 
   private User getUser(String email) throws IllegalArgumentException {
@@ -62,22 +72,11 @@ public class BetService {
     return user;
   }
 
-  private Team getTeam(String name) throws IllegalArgumentException {
-    if (name == null || name.trim().length() == 0) {
-      throw new IllegalArgumentException("empty name");
-    }
-    Team team = teamRepository.findByName(name);
-    if (team == null) {
-      throw new IllegalArgumentException("Team does not exist!");
-    }
-    return team;
-  }
-
-  private Event getEvent(long id) throws IllegalArgumentException {
-    Optional<Event> event = eventRepository.findById(id);
-    if (event.isEmpty()) {
+  private EventTeam getEventTeam(long id) throws IllegalArgumentException {
+    Optional<EventTeam> eventTeam = eventTeamRepository.findById(id);
+    if (eventTeam.isEmpty()) {
       throw new IllegalArgumentException("Event does not exist!");
     }
-    return event.get();
+    return eventTeam.get();
   }
 }

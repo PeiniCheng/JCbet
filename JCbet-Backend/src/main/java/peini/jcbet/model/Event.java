@@ -1,14 +1,12 @@
 package peini.jcbet.model;
 
 import java.sql.Date;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Event {
@@ -18,23 +16,22 @@ public class Event {
   private String title;
   private String description;
   private String image;
-  private Date startTime;
   private Date endTime;
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-  private List<Team> teamList;
+  @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  private EventTeam teamA;
 
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-  private List<Bet> betList;
-  private EventStatus status;
+  @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  private EventTeam teamB;
 
-  enum EventStatus {
-    OPEN, START, CLOSE, END
+  private EventState status;
+
+  public enum EventState {
+    OPEN, CLOSE
 
   }
 
   public Event() {
-    this.status = EventStatus.OPEN;
-    this.startTime = new Date(System.currentTimeMillis());
+    this.status = EventState.OPEN;
   }
 
   public void setTitle(String title) {
@@ -61,14 +58,6 @@ public class Event {
     return image;
   }
 
-  public void setStartTime(Date startTime) {
-    this.startTime = startTime;
-  }
-
-  public Date getStartTime() {
-    return startTime;
-  }
-
   public void setEndTime(Date endTime) {
     this.endTime = endTime;
   }
@@ -77,36 +66,28 @@ public class Event {
     return endTime;
   }
 
-  public void setTeam(List<Team> teamList) {
-    this.teamList = teamList;
+  public void setTeamA(EventTeam team) {
+    this.teamA = team;
   }
 
-  public void addTeam(Team team) {
-    this.teamList.add(team);
+  public EventTeam getTeamA() {
+    return teamA;
   }
 
-  public boolean removeTeam(Team team) {
-    return this.teamList.remove(team);
+  public void setTeamB(EventTeam team) {
+    this.teamB = team;
   }
 
-  public List<Team> getTeamList() {
-    return teamList;
+  public EventTeam getTeamB() {
+    return teamB;
   }
 
-  public void setStatus(EventStatus status) {
+  public void setStatus(EventState status) {
     this.status = status;
   }
 
-  public EventStatus getStatus() {
+  public EventState getStatus() {
     return status;
   }
 
-
-  public void setBetList(List<Bet> betList) {
-    this.betList = betList;
-  }
-
-  public List<Bet> getBetList() {
-    return betList;
-  }
 }

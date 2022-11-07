@@ -6,13 +6,17 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import peini.jcbet.dao.BetRepository;
 import peini.jcbet.dao.UserRepository;
+import peini.jcbet.model.Bet;
 import peini.jcbet.model.User;
 
 @Service
 public class UserService {
   @Autowired
   UserRepository userRepository;
+  @Autowired
+  BetRepository betRepository;
 
   @Transactional
   public User getUser(String email) throws IllegalArgumentException {
@@ -74,8 +78,24 @@ public class UserService {
   }
 
   @Transactional
+  public List<Bet> getBetsByUsername(String email) throws IllegalArgumentException {
+    User user = getUser(email);
+    return user.getBetList();
+  }
+
+  @Transactional
+  public User addToken(String email, double amount) throws IllegalArgumentException {
+    User user = getUser(email);
+    user.addToken(amount);
+    return userRepository.save(user);
+  }
+
+  @Transactional
   public void deleteUser(String email) throws IllegalArgumentException {
     User user = getUser(email);
+    for (Bet bet : user.getBetList()){
+      betRepository.delete(bet);
+    }
     userRepository.delete(user);
   }
 
