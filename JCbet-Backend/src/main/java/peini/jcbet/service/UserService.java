@@ -32,10 +32,10 @@ public class UserService {
 
   @Transactional
   public User createUser(String email) throws IllegalArgumentException {
-    if (getUser(email) != null) {
+    if (userRepository.findByEmail(email) != null) {
       throw new IllegalArgumentException("email already exists");
     }
-    if(Pattern.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+    if(!Pattern.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
         + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$", email)){
       throw new IllegalArgumentException("invalid email");
     }

@@ -1,13 +1,16 @@
 package peini.jcbet.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="app_user")
 public class User {
   @Id
   private String email;
@@ -25,6 +28,7 @@ public class User {
     username = "";
     password = "";
     token = 0;
+    this.betList = new ArrayList<>();
   }
 
   public void setProfilePic(String profilePic) {
