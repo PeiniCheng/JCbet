@@ -95,6 +95,13 @@ public class UserService {
   }
 
   @Transactional
+  public User deductToken(String email, double amount) throws IllegalArgumentException {
+    User user = getUser(email);
+    user.deductToken(amount);
+    return userRepository.save(user);
+  }
+
+  @Transactional
   public void deleteUser(String email) throws IllegalArgumentException {
     User user = getUser(email);
     for (Bet bet : user.getBetList()){

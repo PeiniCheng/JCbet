@@ -69,6 +69,24 @@ public class UserController {
     return convertToDto(user);
   }
 
+  @PatchMapping(value = {"/user/{email}/addToken", "/user/{email}/addToken/"})
+  public UserDto addToken(@PathVariable("email") String email,
+                                  @RequestParam double token)
+      throws IllegalArgumentException {
+    User user = service.getUser(email);
+    user = service.addToken(email, token);
+    return convertToDto(user);
+  }
+
+  @PatchMapping(value = {"/user/{email}/deductToken", "/user/{email}/deductToken/"})
+  public UserDto deductToken(@PathVariable("email") String email,
+                          @RequestParam double token)
+      throws IllegalArgumentException {
+    User user = service.getUser(email);
+    user = service.deductToken(email, token);
+    return convertToDto(user);
+  }
+
   @DeleteMapping(value = {"/user/{email}", "/user/{email}/"})
   public void deleteUser(@PathVariable("email") String email)
       throws IllegalArgumentException {
