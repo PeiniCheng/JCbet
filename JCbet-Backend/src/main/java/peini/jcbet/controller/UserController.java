@@ -29,7 +29,7 @@ public class UserController {
         .collect(Collectors.toList());
   }
 
-  @PostMapping(value = {"/user", "/user/"})
+  @PostMapping(value = {"/user/{email}", "/user/{email}/"})
   public UserDto createUser (@PathVariable("email") String email
   ) throws IllegalArgumentException {
     User user = service.createUser(email);
