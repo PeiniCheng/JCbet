@@ -18,4 +18,28 @@ public class UserDto {
     this.token = token;
     this.betList = betList;
   }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public String getProfilePic() {
+    return profilePic;
+  }
+
+  public double getToken() {
+    return token;
+  }
+
+  public List<BetDto> getBetList() {
+    return betList;
+  }
 }

@@ -10,4 +10,16 @@ public class TeamDto {
     this.name = name;
     this.image = image;
   }
+
+  public long getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getImage() {
+    return image;
+  }
 }

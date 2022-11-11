@@ -69,7 +69,7 @@ public class UserController {
     return convertToDto(user);
   }
 
-  @DeleteMapping(value = {"/customer/{email}", "/customer/{email}/"})
+  @DeleteMapping(value = {"/user/{email}", "/user/{email}/"})
   public void deleteUser(@PathVariable("email") String email)
       throws IllegalArgumentException {
     service.deleteUser(email);

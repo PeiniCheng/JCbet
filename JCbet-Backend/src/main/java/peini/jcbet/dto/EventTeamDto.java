@@ -21,4 +21,20 @@ public class EventTeamDto{
       this.team = team;
       this.event = event;
     }
+
+  public long getId() {
+    return id;
+  }
+
+  public String getResult() {
+    return result;
+  }
+
+  public TeamDto getTeam() {
+    return team;
+  }
+
+  public String getEvent() {
+    return event;
+  }
 }

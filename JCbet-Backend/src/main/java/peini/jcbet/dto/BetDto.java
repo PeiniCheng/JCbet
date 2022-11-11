@@ -13,4 +13,20 @@ public class BetDto {
     this.token = token;
     this.user = user;
   }
+
+  public long getId() {
+    return id;
+  }
+
+  public EventTeamDto getChoice() {
+    return choice;
+  }
+
+  public int getToken() {
+    return token;
+  }
+
+  public String getUser() {
+    return user;
+  }
 }

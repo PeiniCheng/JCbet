@@ -22,7 +22,7 @@ public class util {
     if (u == null) {
       throw new IllegalArgumentException("There is no such User!");
     }
-    UserDto customerDto = new UserDto(u.getUsername(), u.getPassword(), u.getEmail(), u.getProfilePic(), u.getToken(), createBetDtoList(u));
+    UserDto customerDto = new UserDto(u.getEmail(), u.getUsername(), u.getPassword(), u.getProfilePic(), u.getToken(), createBetDtoList(u));
     return customerDto;
   }
 
