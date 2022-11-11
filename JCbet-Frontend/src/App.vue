@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 60px; text-align: left;">
+  <div style="height: 8vh; text-align: left;">
     <img alt="JCbet logo" src="./assets/logo.png" style = "max-height: 100%;margin-left: 3%;">
     <a href="https://discord.gg/s4pswSK4">
       <img alt="discord logo" src="./assets/discord.png" style = "max-height: 80%;margin-left: 73%;">

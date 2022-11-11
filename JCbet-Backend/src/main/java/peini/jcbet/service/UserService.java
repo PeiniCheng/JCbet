@@ -41,6 +41,10 @@ public class UserService {
     }
     User user = new User();
     user.setEmail(email);
+    user.setUsername("null");
+    user.setPassword("password");
+    user.setProfilePic("null");
+    user.addToken(10);
     return userRepository.save(user);
   }
 

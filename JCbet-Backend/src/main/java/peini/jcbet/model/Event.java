@@ -34,6 +34,10 @@ public class Event {
     this.status = EventState.OPEN;
   }
 
+  public long getId() {
+    return id;
+  }
+
   public void setTitle(String title) {
     this.title = title;
   }

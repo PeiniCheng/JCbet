@@ -9,11 +9,11 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class User {
-  private String profilePic;
   @Id
   private String email;
   private String username;
   private String password;
+  private String profilePic;
   private double token;
 
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
