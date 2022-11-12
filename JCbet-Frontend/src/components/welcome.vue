@@ -1,11 +1,11 @@
 /* eslint-disable */
 <template>
   <body>
-  <div class = "row" style = "height: 100%;">
+  <div class = "row" style = "width: 100%">
     <div class = "col">
       <img src="../assets/whph.png">
     </div>
-      <div
+      <form
           class = "col"
           style="
           left: 0px;
@@ -15,11 +15,14 @@
           background-color: rgba(0,0,0,0.7)">
         <div class = "row" style = "padding-left: 30px; padding-right: 30px; padding-top: 100px">
         <label style="color:whitesmoke;" for="exampleFormControlInput1" class="form-label">邮箱地址</label>
-        <input type="text" class="form-control1" id="FormControlInput1" placeholder="name@example.com">
+        <input type="text" class="form-control1" placeholder="name@example.com" v-model="email" required>
         </div>
         <div class = "row" style = "padding-left: 30px; padding-right: 30px;">
         <label style="color:whitesmoke;" for="exampleFormControlInput1" class="form-label">密码</label>
-        <input type="text" class="form-control2" id="FormControlInput2">
+        <input type="text" class="form-control2" v-model="password" required>
+        </div>
+        <div class="row" style = "padding-left: 30px; padding-right: 30px; height: 30px">
+          <p style="color: red">{{ error }}</p>
         </div>
         <div class = "row" style = "padding: 30px">
           <div class = "col">
@@ -28,6 +31,7 @@
             type="button"
             id="login"
             aria-expanded="false"
+            @click="login()"
         >
           登陆
         </button>
@@ -45,16 +49,12 @@
             </router-link>
           </div>
         </div>
-      </div>
+      </form>
   </div>
   </body>
 </template>
 
-<script>
-export default {
-  name: 'Welcome',
-}
-</script>
+<script src = "./welcomeScript.js"></script>
 
 <style scoped>
 body {
