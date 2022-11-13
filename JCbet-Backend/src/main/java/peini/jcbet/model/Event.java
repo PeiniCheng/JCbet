@@ -16,7 +16,7 @@ public class Event {
   private String title;
   private String description;
   private String image;
-  private Date endTime;
+  private long endTime;
   @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   private EventTeam teamA;
 
@@ -62,11 +62,11 @@ public class Event {
     return image;
   }
 
-  public void setEndTime(Date endTime) {
+  public void setEndTime(long endTime) {
     this.endTime = endTime;
   }
 
-  public Date getEndTime() {
+  public long getEndTime() {
     return endTime;
   }
 

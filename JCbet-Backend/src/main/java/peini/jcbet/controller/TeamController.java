@@ -29,6 +29,11 @@ public class TeamController {
         .collect(Collectors.toList());
   }
 
+  @GetMapping(value = {"/team/{id}", "/team/{id}/"})
+  public TeamDto getTeam(@PathVariable("id") long id) {
+    return convertToDto(service.getTeam(id));
+  }
+
   @PostMapping(value = {"/team/{name}", "/user/{name}/"})
   public TeamDto createTeam(@PathVariable("name") String name, @RequestParam String image
   ) throws IllegalArgumentException {
@@ -36,14 +41,14 @@ public class TeamController {
     return convertToDto(team);
   }
 
-  @PatchMapping(value = {"/team/{id}/setName", "/user/{id}/setName"})
+  @PatchMapping(value = {"/team/{id}/setName", "/user/{id}/setName/"})
   public TeamDto setTeamName(@PathVariable("id") long id, @RequestParam String newName
   ) throws IllegalArgumentException {
     Team team = service.setTeamName(id, newName);
     return convertToDto(team);
   }
 
-  @PatchMapping(value = {"/team/{id}/setImage", "/user/{id}/setImage"})
+  @PatchMapping(value = {"/team/{id}/setImage", "/user/{id}/setImage/"})
   public TeamDto setTeamImage(@PathVariable("id") long id, @RequestParam String newImage
   ) throws IllegalArgumentException {
     Team team = service.setTeamImage(id, newImage);

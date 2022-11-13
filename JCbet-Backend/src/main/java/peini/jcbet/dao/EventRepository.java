@@ -9,4 +9,6 @@ public interface EventRepository extends CrudRepository<Event, Long> {
   Event findByTitle(String title);
 
   ArrayList<Event> findByStatus(EventState state);
+
+  ArrayList<Event> findAllByOrderByEndTime();
 }

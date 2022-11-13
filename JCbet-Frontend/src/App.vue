@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar bg-dark align-items-top" style="text-align: center; " v-show="store.state.loggedIn">
+    <nav class="navbar bg-dark align-items-top sticky-top" style="text-align: center; " v-show="store.state.loggedIn">
       <div class="container-fluid" style="margin-left: 100px; margin-right: 100px">
         <router-link to="/home">
           <img src="./assets/logo.png" width="60" height="30" class="d-inline-block align-text-top">
@@ -11,6 +11,9 @@
               <a href="https://discord.gg/s4pswSK4">
                 <img src="./assets/discord.png" width="30" height="30">
               </a>
+            </li>
+            <li class="nav-item">
+              余额：{{user.token}}
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">

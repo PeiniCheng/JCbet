@@ -10,6 +10,7 @@ import "bootstrap"
 import axios from 'axios'
 import {store} from "./state";
 import UpdateProfile from "@/components/updateProfile";
+import AddEvent from "@/components/addEvent.vue";
 
 const routes = [
     {
@@ -31,6 +32,10 @@ const routes = [
     {
         path: "/updateProfile",
         component: UpdateProfile
+    },
+    {
+        path: "/addEvent",
+        component: AddEvent
     }
 ];
 

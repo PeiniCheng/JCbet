@@ -1,8 +1,11 @@
 package peini.jcbet.service;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import peini.jcbet.dao.EventRepository;
 import peini.jcbet.dao.EventTeamRepository;
@@ -11,6 +14,7 @@ import peini.jcbet.model.Event;
 import peini.jcbet.model.EventTeam;
 import peini.jcbet.model.Team;
 
+@Service
 public class EventService {
   @Autowired
   TeamRepository teamRepository;
@@ -32,14 +36,17 @@ public class EventService {
     Event event = new Event();
     event.setTitle(title);
     event.setDescription(description);
-    event.setEndTime(new Date(endTime));
+    event.setImage(image);
+    event.setEndTime(endTime);
     Team teamA = getTeam(teamAName);
     Team teamB = getTeam(teamBName);
     EventTeam eventTeamA = new EventTeam();
     eventTeamA.setTeam(teamA);
+    eventTeamA.setEvent(event);
     eventTeamRepository.save(eventTeamA);
     EventTeam eventTeamB = new EventTeam();
     eventTeamB.setTeam(teamB);
+    eventTeamB.setEvent(event);
     eventTeamRepository.save(eventTeamB);
     event.setTeamA(eventTeamA);
     event.setTeamB(eventTeamB);
@@ -53,6 +60,12 @@ public class EventService {
       throw new IllegalArgumentException("Event does not exist!");
     }
     return event.get();
+  }
+
+  @Transactional
+  public List<Event> getAllEvents() {
+    ArrayList<Event> eventList = eventRepository.findAllByOrderByEndTime();
+    return eventList;
   }
 
   @Transactional
@@ -90,7 +103,7 @@ public class EventService {
       throws IllegalArgumentException {
     Event event = getEvent(id);
     ;
-    event.setEndTime(new Date(endTime));
+    event.setEndTime(endTime);
     return eventRepository.save(event);
   }
 
