@@ -38,7 +38,7 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 })
-axios.defaults.baseURL = 'http://jcbet-backend-1.herokuapp.com';
+axios.defaults.baseURL = 'https://jcbet-backend-1.herokuapp.com';
 const app = createApp(App)
 app.use(router, axios, store)
 app.mount('#app')
