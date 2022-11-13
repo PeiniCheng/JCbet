@@ -65,7 +65,7 @@ public class UserController {
                                 @RequestParam String newProfilePic)
       throws IllegalArgumentException {
     User user = service.getUser(email);
-    user = service.setUserPassword(email, newProfilePic);
+    user = service.setUserProfilePic(email, newProfilePic);
     return convertToDto(user);
   }
 

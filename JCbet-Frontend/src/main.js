@@ -8,6 +8,8 @@ import Home from "@/components/home.vue"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 import axios from 'axios'
+import {store} from "./state";
+import UpdateProfile from "@/components/updateProfile";
 
 const routes = [
     {
@@ -25,6 +27,10 @@ const routes = [
     {
         path: "/home",
         component: Home,
+    },
+    {
+        path: "/updateProfile",
+        component: UpdateProfile
     }
 ];
 
@@ -34,5 +40,5 @@ const router = createRouter({
 })
 axios.defaults.baseURL = 'http://jcbet-backend-1.herokuapp.com';
 const app = createApp(App)
-app.use(router, axios)
+app.use(router, axios, store)
 app.mount('#app')
