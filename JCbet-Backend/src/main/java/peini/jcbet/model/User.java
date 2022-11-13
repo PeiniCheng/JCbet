@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="app_user")
+@Table(name = "app_user")
 public class User {
   @Id
   private String email;
@@ -39,7 +39,7 @@ public class User {
     return profilePic;
   }
 
-  public void setEmail(String email){
+  public void setEmail(String email) {
     this.email = email;
   }
 
@@ -87,11 +87,11 @@ public class User {
     this.betList = betList;
   }
 
-  public void addBet(Bet bet){
+  public void addBet(Bet bet) {
     betList.add(bet);
   }
 
-  public void removeBet(Bet bet){
+  public void removeBet(Bet bet) {
     betList.remove(bet);
   }
 }

@@ -21,11 +21,12 @@ public class EventService {
   EventTeamRepository eventTeamRepository;
 
   @Transactional
-  public Event createEvent(String title, String description, String image, long endTime, String teamAName, String teamBName) throws IllegalArgumentException{
+  public Event createEvent(String title, String description, String image, long endTime,
+                           String teamAName, String teamBName) throws IllegalArgumentException {
     if (title == null || title.trim().length() == 0) {
       throw new IllegalArgumentException("empty title");
     }
-    if (endTime <= System.currentTimeMillis()){
+    if (endTime <= System.currentTimeMillis()) {
       throw new IllegalArgumentException("invalid end time");
     }
     Event event = new Event();
@@ -60,7 +61,8 @@ public class EventService {
     if (title == null || title.trim().length() == 0) {
       throw new IllegalArgumentException("empty title");
     }
-    Event event = getEvent(id);;
+    Event event = getEvent(id);
+    ;
     event.setTitle(title);
     return eventRepository.save(event);
   }
@@ -68,7 +70,8 @@ public class EventService {
   @Transactional
   public Event setEventDescription(long id, String description)
       throws IllegalArgumentException {
-    Event event = getEvent(id);;
+    Event event = getEvent(id);
+    ;
     event.setDescription(description);
     return eventRepository.save(event);
   }
@@ -76,7 +79,8 @@ public class EventService {
   @Transactional
   public Event setEventImage(long id, String image)
       throws IllegalArgumentException {
-    Event event = getEvent(id);;
+    Event event = getEvent(id);
+    ;
     event.setImage(image);
     return eventRepository.save(event);
   }
@@ -84,13 +88,15 @@ public class EventService {
   @Transactional
   public Event setEventEndTime(long id, long endTime)
       throws IllegalArgumentException {
-    Event event = getEvent(id);;
+    Event event = getEvent(id);
+    ;
     event.setEndTime(new Date(endTime));
     return eventRepository.save(event);
   }
 
   @Transactional
-  public Event setEventTeams(long id, String teamAName, String teamBName) throws IllegalArgumentException{
+  public Event setEventTeams(long id, String teamAName, String teamBName)
+      throws IllegalArgumentException {
     Event event = getEvent(id);
     eventTeamRepository.delete(event.getTeamA());
     eventTeamRepository.delete(event.getTeamB());
@@ -108,22 +114,22 @@ public class EventService {
   }
 
   @Transactional
-  public Event closeEvent(long id) throws IllegalArgumentException{
+  public Event closeEvent(long id) throws IllegalArgumentException {
     Event event = getEvent(id);
     event.setStatus(Event.EventState.CLOSE);
     return eventRepository.save(event);
   }
 
   @Transactional
-  public Event setEventResult(long eventId, long eventTeamId) throws IllegalArgumentException{
+  public Event setEventResult(long eventId, long eventTeamId) throws IllegalArgumentException {
     Event event = getEvent(eventId);
     EventTeam eventTeam = getEventTeam(eventTeamId);
     EventTeam teamA = event.getTeamA();
     EventTeam teamB = event.getTeamB();
-    if (eventTeam.equals(teamA)){
+    if (eventTeam.equals(teamA)) {
       teamA.setResult(EventTeam.Result.WIN);
       teamB.setResult(EventTeam.Result.LOSE);
-    }else{
+    } else {
       teamA.setResult(EventTeam.Result.LOSE);
       teamB.setResult(EventTeam.Result.WIN);
     }

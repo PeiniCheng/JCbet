@@ -12,7 +12,8 @@ public class EventDto {
   private EventTeamDto teamB;
   private String status;
 
-  public EventDto(long id, String title, String description, String image, Date endTime, EventTeamDto teamA, EventTeamDto teamB, String status){
+  public EventDto(long id, String title, String description, String image, Date endTime,
+                  EventTeamDto teamA, EventTeamDto teamB, String status) {
     this.id = id;
     this.title = title;
     this.description = description;

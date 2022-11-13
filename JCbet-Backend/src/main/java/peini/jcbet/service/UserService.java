@@ -35,8 +35,8 @@ public class UserService {
     if (userRepository.findByEmail(email) != null) {
       throw new IllegalArgumentException("email already exists");
     }
-    if(!Pattern.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
-        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$", email)){
+    if (!Pattern.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$", email)) {
       throw new IllegalArgumentException("invalid email");
     }
     User user = new User();
@@ -54,7 +54,8 @@ public class UserService {
     if (username == null || username.trim().length() == 0) {
       throw new IllegalArgumentException("empty username");
     }
-    User user = getUser(email);;
+    User user = getUser(email);
+    ;
     user.setUsername(username);
     return userRepository.save(user);
   }
@@ -65,7 +66,8 @@ public class UserService {
     if (password == null || password.trim().length() == 0) {
       throw new IllegalArgumentException("empty password");
     }
-    User user = getUser(email);;
+    User user = getUser(email);
+    ;
     user.setPassword(password);
     return userRepository.save(user);
   }
@@ -76,7 +78,8 @@ public class UserService {
     if (path == null || path.trim().length() == 0) {
       throw new IllegalArgumentException("no image");
     }
-    User user = getUser(email);;
+    User user = getUser(email);
+    ;
     user.setProfilePic(path);
     return userRepository.save(user);
   }
@@ -104,7 +107,7 @@ public class UserService {
   @Transactional
   public void deleteUser(String email) throws IllegalArgumentException {
     User user = getUser(email);
-    for (Bet bet : user.getBetList()){
+    for (Bet bet : user.getBetList()) {
       betRepository.delete(bet);
     }
     userRepository.delete(user);
@@ -115,4 +118,4 @@ public class UserService {
     ArrayList<User> userList = userRepository.findAllByOrderByUsername();
     return userList;
   }
-  }
+}

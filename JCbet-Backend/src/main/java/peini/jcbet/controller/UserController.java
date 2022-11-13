@@ -1,6 +1,6 @@
 package peini.jcbet.controller;
 
-import static peini.jcbet.dto.util.*;
+import static peini.jcbet.dto.util.convertToDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +30,7 @@ public class UserController {
   }
 
   @PostMapping(value = {"/user/{email}", "/user/{email}/"})
-  public UserDto createUser (@PathVariable("email") String email
+  public UserDto createUser(@PathVariable("email") String email
   ) throws IllegalArgumentException {
     User user = service.createUser(email);
     return convertToDto(user);
@@ -44,7 +44,7 @@ public class UserController {
 
   @PatchMapping(value = {"/user/{email}/username", "/user/{email}/username/"})
   public UserDto updateUsername(@PathVariable("email") String email,
-                                    @RequestParam String newName)
+                                @RequestParam String newName)
       throws IllegalArgumentException {
     User user = service.getUser(email);
     user = service.setUserUsername(email, newName);
@@ -62,7 +62,7 @@ public class UserController {
 
   @PatchMapping(value = {"/user/{email}/profilePic", "/user/{email}/profilePic/"})
   public UserDto updateProfilePic(@PathVariable("email") String email,
-                                @RequestParam String newProfilePic)
+                                  @RequestParam String newProfilePic)
       throws IllegalArgumentException {
     User user = service.getUser(email);
     user = service.setUserProfilePic(email, newProfilePic);
@@ -71,7 +71,7 @@ public class UserController {
 
   @PatchMapping(value = {"/user/{email}/addToken", "/user/{email}/addToken/"})
   public UserDto addToken(@PathVariable("email") String email,
-                                  @RequestParam double token)
+                          @RequestParam double token)
       throws IllegalArgumentException {
     User user = service.getUser(email);
     user = service.addToken(email, token);
@@ -80,7 +80,7 @@ public class UserController {
 
   @PatchMapping(value = {"/user/{email}/deductToken", "/user/{email}/deductToken/"})
   public UserDto deductToken(@PathVariable("email") String email,
-                          @RequestParam double token)
+                             @RequestParam double token)
       throws IllegalArgumentException {
     User user = service.getUser(email);
     user = service.deductToken(email, token);

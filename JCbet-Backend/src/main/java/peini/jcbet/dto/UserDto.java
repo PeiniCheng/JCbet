@@ -10,7 +10,8 @@ public class UserDto {
   private double token;
   private List<BetDto> betList;
 
-  public UserDto(String email, String username, String password, String profilePic, double token, List<BetDto> betList){
+  public UserDto(String email, String username, String password, String profilePic, double token,
+                 List<BetDto> betList) {
     this.profilePic = profilePic;
     this.email = email;
     this.username = username;

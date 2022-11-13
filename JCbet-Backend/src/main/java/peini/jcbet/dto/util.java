@@ -22,27 +22,32 @@ public class util {
     if (u == null) {
       throw new IllegalArgumentException("There is no such User!");
     }
-    UserDto customerDto = new UserDto(u.getEmail(), u.getUsername(), u.getPassword(), u.getProfilePic(), u.getToken(), createBetDtoList(u));
+    UserDto customerDto =
+        new UserDto(u.getEmail(), u.getUsername(), u.getPassword(), u.getProfilePic(), u.getToken(),
+            createBetDtoList(u));
     return customerDto;
   }
 
-  public static BetDto convertToDto(Bet b) throws IllegalArgumentException{
+  public static BetDto convertToDto(Bet b) throws IllegalArgumentException {
     if (b == null) {
       throw new IllegalArgumentException("There is no bet!");
     }
-    BetDto betDto = new BetDto(b.getId(), convertToDto(b.getChoice()), b.getToken(), b.getUser().getEmail());
+    BetDto betDto =
+        new BetDto(b.getId(), convertToDto(b.getChoice()), b.getToken(), b.getUser().getEmail());
     return betDto;
   }
 
-  public static EventDto convertToDto(Event e) throws IllegalArgumentException{
+  public static EventDto convertToDto(Event e) throws IllegalArgumentException {
     if (e == null) {
       throw new IllegalArgumentException("There is no event!");
     }
-    EventDto eventDto = new EventDto(e.getId(), e.getTitle(), e.getDescription(), e.getImage(), e.getEndTime(), convertToDto(e.getTeamA()), convertToDto(e.getTeamB()), e.getStatus().name());
+    EventDto eventDto =
+        new EventDto(e.getId(), e.getTitle(), e.getDescription(), e.getImage(), e.getEndTime(),
+            convertToDto(e.getTeamA()), convertToDto(e.getTeamB()), e.getStatus().name());
     return eventDto;
   }
 
-  public static TeamDto convertToDto(Team t) throws IllegalArgumentException{
+  public static TeamDto convertToDto(Team t) throws IllegalArgumentException {
     if (t == null) {
       throw new IllegalArgumentException("There is no team!");
     }
@@ -50,15 +55,17 @@ public class util {
     return betDto;
   }
 
-  public static EventTeamDto convertToDto(EventTeam et) throws IllegalArgumentException{
+  public static EventTeamDto convertToDto(EventTeam et) throws IllegalArgumentException {
     if (et == null) {
       throw new IllegalArgumentException("There is no team!");
     }
-    EventTeamDto betDto = new EventTeamDto(et.getId(), et.getResult().name(), convertToDto(et.getTeam()), et.getEvent().getTitle());
+    EventTeamDto betDto =
+        new EventTeamDto(et.getId(), et.getResult().name(), convertToDto(et.getTeam()),
+            et.getEvent().getTitle());
     return betDto;
   }
 
-  public static List<BetDto> createBetDtoList(User u){
+  public static List<BetDto> createBetDtoList(User u) {
     List<Bet> betList = u.getBetList();
     List<BetDto> bets = new ArrayList<>();
     for (Bet bet : betList) {

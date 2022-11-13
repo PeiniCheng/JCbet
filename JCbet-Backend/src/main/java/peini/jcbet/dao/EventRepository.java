@@ -7,5 +7,6 @@ import peini.jcbet.model.Event.EventState;
 
 public interface EventRepository extends CrudRepository<Event, Long> {
   Event findByTitle(String title);
+
   ArrayList<Event> findByStatus(EventState state);
 }

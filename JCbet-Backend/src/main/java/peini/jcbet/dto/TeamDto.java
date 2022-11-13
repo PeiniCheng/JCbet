@@ -5,7 +5,7 @@ public class TeamDto {
   private String name;
   private String image;
 
-  public TeamDto(long id, String name, String image){
+  public TeamDto(long id, String name, String image) {
     this.id = id;
     this.name = name;
     this.image = image;

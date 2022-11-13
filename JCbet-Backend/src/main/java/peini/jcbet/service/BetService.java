@@ -4,14 +4,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import peini.jcbet.dao.BetRepository;
-import peini.jcbet.dao.EventRepository;
 import peini.jcbet.dao.EventTeamRepository;
 import peini.jcbet.dao.TeamRepository;
 import peini.jcbet.dao.UserRepository;
 import peini.jcbet.model.Bet;
-import peini.jcbet.model.Event;
 import peini.jcbet.model.EventTeam;
-import peini.jcbet.model.Team;
 import peini.jcbet.model.User;
 
 public class BetService {
@@ -47,7 +44,7 @@ public class BetService {
   }
 
   @Transactional
-  public Bet setAmount(long betId, int amount) throws IllegalArgumentException{
+  public Bet setAmount(long betId, int amount) throws IllegalArgumentException {
     Bet bet = getBet(betId);
     bet.setToken(amount);
     return betRepository.save(bet);

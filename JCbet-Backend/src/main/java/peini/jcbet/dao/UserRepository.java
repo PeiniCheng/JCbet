@@ -6,6 +6,8 @@ import peini.jcbet.model.User;
 
 public interface UserRepository extends CrudRepository<User, String> {
   User findByUsername(String username);
+
   User findByEmail(String email);
+
   ArrayList<User> findAllByOrderByUsername();
 }

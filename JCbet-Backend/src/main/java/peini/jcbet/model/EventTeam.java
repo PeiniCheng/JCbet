@@ -26,11 +26,11 @@ public class EventTeam {
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
   private List<Bet> betList;
 
-  public enum Result{
+  public enum Result {
     NA, WIN, LOSE
   }
 
-  public EventTeam(){
+  public EventTeam() {
     result = Result.NA;
   }
 
@@ -54,7 +54,7 @@ public class EventTeam {
     return team;
   }
 
-  public Result getResult(){
+  public Result getResult() {
     return result;
   }
 
@@ -70,11 +70,11 @@ public class EventTeam {
     this.betList = betList;
   }
 
-  public void addBet(Bet bet){
+  public void addBet(Bet bet) {
     betList.add(bet);
   }
 
-  public void removeBet(Bet bet){
+  public void removeBet(Bet bet) {
     betList.remove(bet);
   }
 }
