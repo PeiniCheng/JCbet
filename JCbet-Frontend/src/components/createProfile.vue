@@ -22,6 +22,7 @@
             aria-expanded="false"
             @click="profile"
         >
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
           确认
         </button>
       </div>

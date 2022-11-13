@@ -18,6 +18,7 @@
             aria-expanded="false"
             @click="login()"
         >
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
           继续
         </button>
       </div>

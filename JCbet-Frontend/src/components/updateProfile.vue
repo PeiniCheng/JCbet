@@ -34,6 +34,7 @@
               aria-expanded="false"
               @click="updateProfilePic(user.profilePic)"
           >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
             上传
           </button>
         </div>
@@ -57,6 +58,7 @@
               aria-expanded="false"
               @click="updateUsername(user.username)"
           >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
             确认修改
           </button>
         </div>
@@ -75,6 +77,7 @@
               aria-expanded="false"
               @click="updatePassword(user.password)"
           >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
             确认修改
           </button>
         </div>
