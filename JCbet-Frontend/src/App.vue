@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar bg-dark align-items-top" style="text-align: center; " v-show="user.state.loggedIn">
+    <nav class="navbar bg-dark align-items-top" style="text-align: center; " v-show="store.state.loggedIn">
       <div class="container-fluid" style="margin-left: 100px; margin-right: 100px">
         <router-link to="/home">
           <img src="./assets/logo.png" width="60" height="30" class="d-inline-block align-text-top">
@@ -14,8 +14,8 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ user.state.username }}
-                <img src="./assets/infp.png" class="avatar" width="30" height="30">
+                {{ user.username }}
+                <img src="./assets/default.png" class="avatar" width="30" height="30">
               </a>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <router-link to="/updateProfile">
@@ -37,21 +37,7 @@
   </div>
 </template>
 
-<script>
-import {store} from "./state";
-
-export default {
-  data() {
-    return {
-      user: store
-    }
-  },
-  methods: {
-    logout() {
-      store.commit('logout');
-    }
-  }
-}
+<script src="./App.js">
 </script>
 
 <style>

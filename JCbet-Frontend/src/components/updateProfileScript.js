@@ -23,7 +23,7 @@ export default {
         axios.get("/user/".concat(store.state.email))
             .then(response => {
                 this.user = response.data;
-                let imgsrc = 'https://i.ibb.co/hVG7Kks/infp.jpg'
+                let imgsrc = this.user.profilePic;
                 document.querySelector('#profilePic').setAttribute('src', imgsrc);
             })
             .catch(e => {
