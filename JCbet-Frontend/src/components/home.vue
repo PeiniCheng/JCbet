@@ -24,10 +24,29 @@
           </div>
         </div>
       </div>
-      <div style="width: 1000px">
-        <iframe
+      <div class="row" style="width: 1000px">
+        <div class="col">
+          <iframe
             width="750" height="400" src="https://www.youtube.com/embed/7x48eNIIjlw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
+          </iframe>
+        </div>
+        <div class="col" style="background-color: rgba(0,0,0,0.7)">
+          <h3 style="color:whitesmoke; padding-top: 10px">排行榜</h3>
+            <div class="row" style="padding-top: 10px">
+              <h4 style="color:whitesmoke; padding-top: 10px">大地球: {{user1.username}}</h4>
+              <img v-bind:src="user1.profilePic" width="200" height="200">
+            </div>
+            <div class="row">
+              <div class="col">
+                <h6 style="color:whitesmoke; padding-top: 10px">小地球: {{user2.username}}</h6>
+                <img v-bind:src="user2.profilePic" width="90" height="90">
+              </div>
+              <div class="col">
+                <h6 style="color:whitesmoke; padding-top: 10px">老鹰: {{user3.username}}</h6>
+                <img v-bind:src="user3.profilePic" width="80" height="80">
+              </div>
+            </div>
+        </div>
       </div>
     </div>
   </body>

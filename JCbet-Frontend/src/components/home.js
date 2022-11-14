@@ -5,12 +5,27 @@ export default {
     data() {
         return {
             events: [],
+            user1: "",
+            user2: "",
+            user3: "",
             error: "",
             isLoading: false,
         };
     },
     created: function(){
-
+        this.isLoading = true;
+        axios.get("/user/ranking")
+            .then(response => {
+                let users = response.data;
+                this.user1 = users[0];
+                this.user2 = users[1];
+                this.user3 = users[2];
+            })
+            .catch(e => {
+                let errorMsg = e.response.data.message;
+                console.log(errorMsg);
+                this.error = errorMsg;
+            })
     },
     mounted: function(){
         this.isLoading = true;
