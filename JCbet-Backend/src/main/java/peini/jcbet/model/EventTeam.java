@@ -17,10 +17,10 @@ public class EventTeam {
 
   private Result result;
 
-  @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @OneToOne(fetch = FetchType.EAGER)
   private Team team;
 
-  @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @OneToOne(fetch = FetchType.EAGER)
   private Event event;
 
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

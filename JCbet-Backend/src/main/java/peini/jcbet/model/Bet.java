@@ -12,10 +12,10 @@ public class Bet {
   @Id
   @GeneratedValue
   private long id;
-  @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @OneToOne(fetch = FetchType.EAGER)
   private EventTeam choice;
   private int token;
-  @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @OneToOne(fetch = FetchType.EAGER)
   private User user;
 
   public Bet() {
