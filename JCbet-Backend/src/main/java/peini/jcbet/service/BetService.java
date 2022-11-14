@@ -2,6 +2,7 @@ package peini.jcbet.service;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import peini.jcbet.dao.BetRepository;
 import peini.jcbet.dao.EventTeamRepository;
@@ -11,6 +12,7 @@ import peini.jcbet.model.Bet;
 import peini.jcbet.model.EventTeam;
 import peini.jcbet.model.User;
 
+@Service
 public class BetService {
   @Autowired
   BetRepository betRepository;
@@ -39,6 +41,7 @@ public class BetService {
     bet.setUser(user);
     bet.setToken(amount);
     user.addBet(bet);
+    user.deductToken(amount);
     eventTeam.addBet(bet);
     return betRepository.save(bet);
   }
@@ -46,7 +49,11 @@ public class BetService {
   @Transactional
   public Bet setAmount(long betId, int amount) throws IllegalArgumentException {
     Bet bet = getBet(betId);
+    User user = bet.getUser();
+    user.addToken(bet.getToken());
     bet.setToken(amount);
+    user.deductToken(amount);
+    userRepository.save(user);
     return betRepository.save(bet);
   }
 

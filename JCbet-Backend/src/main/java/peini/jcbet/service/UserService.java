@@ -30,6 +30,7 @@ public class UserService {
     return user;
   }
 
+
   @Transactional
   public User createUser(String email) throws IllegalArgumentException {
     if (userRepository.findByEmail(email) != null) {
@@ -114,8 +115,14 @@ public class UserService {
   }
 
   @Transactional
-  public List<User> getAllCustomers() {
+  public List<User> getAllUsers() {
     ArrayList<User> userList = userRepository.findAllByOrderByUsername();
+    return userList;
+  }
+
+  @Transactional
+  public List<User> getTopUsers() {
+    ArrayList<User> userList = userRepository.findAllByOrderByTokenDesc();
     return userList;
   }
 }

@@ -12,8 +12,10 @@ public class EventDto {
   private EventTeamDto teamB;
   private String status;
 
+  private double ratio;
+
   public EventDto(long id, String title, String description, String image, long endTime,
-                  EventTeamDto teamA, EventTeamDto teamB, String status) {
+                  EventTeamDto teamA, EventTeamDto teamB, String status, double ratio) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -22,6 +24,7 @@ public class EventDto {
     this.teamA = teamA;
     this.teamB = teamB;
     this.status = status;
+    this.ratio = ratio;
   }
 
   public long getId() {
@@ -54,5 +57,9 @@ public class EventDto {
 
   public String getStatus() {
     return status;
+  }
+
+  public double getRatio() {
+    return ratio;
   }
 }

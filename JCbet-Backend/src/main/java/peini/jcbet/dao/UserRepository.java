@@ -10,4 +10,6 @@ public interface UserRepository extends CrudRepository<User, String> {
   User findByEmail(String email);
 
   ArrayList<User> findAllByOrderByUsername();
+  ArrayList<User> findAllByOrderByTokenDesc();
+
 }

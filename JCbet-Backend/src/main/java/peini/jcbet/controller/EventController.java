@@ -73,7 +73,7 @@ public class EventController {
   }
 
   @PatchMapping(value = {"/event/{id}/setTeams", "/event/{id}/setTeams/"})
-  public EventDto setEventTeamA(@PathVariable("id") long id, @RequestParam String newTeamA,
+  public EventDto setEventTeams(@PathVariable("id") long id, @RequestParam String newTeamA,
                                 @RequestParam String newTeamB
   ) throws IllegalArgumentException {
     Event event = service.setEventTeams(id, newTeamA, newTeamB);

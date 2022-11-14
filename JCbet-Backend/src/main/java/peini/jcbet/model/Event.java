@@ -94,4 +94,19 @@ public class Event {
     return status;
   }
 
+  public double calculateOdds(){
+    int a = 0;
+    int b = 0;
+    for(Bet bet : teamA.getBetList()){
+      a+= bet.getToken();
+    }
+    for(Bet bet : teamB.getBetList()){
+      b+= bet.getToken();
+    }
+    if(a==0 || b==0){
+      return -1;
+    }else{
+      return (double)b/a;
+    }
+  }
 }

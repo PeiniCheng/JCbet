@@ -43,7 +43,7 @@ public class util {
     }
     EventDto eventDto =
         new EventDto(e.getId(), e.getTitle(), e.getDescription(), e.getImage(), e.getEndTime(),
-            convertToDto(e.getTeamA()), convertToDto(e.getTeamB()), e.getStatus().name());
+            convertToDto(e.getTeamA()), convertToDto(e.getTeamB()), e.getStatus().name(), e.calculateOdds());
     return eventDto;
   }
 

@@ -25,7 +25,13 @@ public class UserController {
 
   @GetMapping(value = {"/user", "/user/"})
   public List<UserDto> getAllUsers() {
-    return service.getAllCustomers().stream().map(p -> convertToDto(p))
+    return service.getAllUsers().stream().map(p -> convertToDto(p))
+        .collect(Collectors.toList());
+  }
+
+  @GetMapping(value = {"/user/ranking", "/user/ranking/"})
+  public List<UserDto> getTopUsers() {
+    return service.getTopUsers().stream().map(p -> convertToDto(p))
         .collect(Collectors.toList());
   }
 
