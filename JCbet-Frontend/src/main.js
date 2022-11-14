@@ -11,6 +11,7 @@ import axios from 'axios'
 import {store} from "./state";
 import UpdateProfile from "@/components/updateProfile";
 import AddEvent from "@/components/addEvent.vue";
+import AddTeam from "@/components/addTeam.vue";
 
 const routes = [
     {
@@ -36,6 +37,10 @@ const routes = [
     {
         path: "/addEvent",
         component: AddEvent
+    },
+    {
+        path: "/addTeam",
+        component: AddTeam
     }
 ];
 

@@ -5,39 +5,16 @@
          style="margin-left: auto; margin-right: auto; padding-top: 20px; padding-bottom: 20px; max-width: 800px; min-height: 200px; line-height: 50px;background-color: rgba(0,0,0,0.7)">
       <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
         <div class="col-2">
-          <label style="color:whitesmoke;" for="loginForm" class="col-form-label">头图</label>
+          <label style="color:whitesmoke;" for="loginForm" class="col-form-label">图标</label>
         </div>
         <div class="col-10">
           <input type="text" v-model="image">
         </div>
       </div>
       <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
-        <label style="color:whitesmoke;" for="loginForm" class="col-2 col-form-label">标题</label>
+        <label style="color:whitesmoke;" for="loginForm" class="col-2 col-form-label">名称</label>
         <div class="col-10">
-          <input type="text" v-model="title">
-        </div>
-      </div>
-      <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
-        <label style="color:whitesmoke;" for="loginForm" class="col-2 col-form-label">内容</label>
-        <div class="col-10">
-          <textarea class="form-control" rows="3" v-model="description"></textarea>
-        </div>
-      </div>
-      <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
-        <label style="color:whitesmoke;" for="loginForm" class="col-2 col-form-label">截止日期</label>
-        <div class="col-10">
-          <input type="datetime-local" id="endTime">
-        </div>
-      </div>
-      <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
-        <label style="color:whitesmoke;" for="loginForm" class="col-2 col-form-label">参赛队伍</label>
-        <div class="col-5">
-          <select class="form-select" id="teamA" aria-label="Default select example">
-          </select>
-        </div>
-        <div class="col-5">
-          <select class="form-select" id="teamB" aria-label="Default select example">
-          </select>
+          <input type="text" v-model="name">
         </div>
       </div>
       <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px">
@@ -48,7 +25,7 @@
               type="button"
               id="proceed"
               aria-expanded="false"
-              @click="addEvent()"
+              @click="addTeam()"
           >
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
             创建
@@ -60,7 +37,7 @@
   </body>
 </template>
 
-<script src="./addEvent.js">
+<script src="./addTeam.js">
 </script>
 
 <style scoped>
@@ -77,11 +54,5 @@ input[type=text] {
   border: 2px solid #ccc;
   color: whitesmoke;
   width: 80%;
-}
-textarea {
-  background: rgba(0, 0, 0, 0);
-  border: 2px solid #ccc;
-  color: whitesmoke;
-  width: 100%;
 }
 </style>

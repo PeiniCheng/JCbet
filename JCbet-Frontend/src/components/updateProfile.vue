@@ -107,6 +107,6 @@ input[type=text] {
   background: rgba(0, 0, 0, 0);
   border: 2px solid #ccc;
   color: whitesmoke;
-  width: 100%
+  width: 100%;
 }
 </style>

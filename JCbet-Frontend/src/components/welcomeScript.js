@@ -11,6 +11,12 @@ export default {
             isLoading: false,
         };
     },
+    created: function(){
+        let self = this;
+        if(store.state.loggedIn){
+            self.$router.push({path: '/home'});
+        }
+    },
     methods: {
         login() {
             let self = this;
