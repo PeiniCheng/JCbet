@@ -1,5 +1,6 @@
 package peini.jcbet.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -32,6 +33,7 @@ public class EventTeam {
 
   public EventTeam() {
     result = Result.NA;
+    betList = new ArrayList<Bet>();
   }
 
   public long getId() {
