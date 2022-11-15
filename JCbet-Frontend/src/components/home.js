@@ -51,6 +51,7 @@ export default {
                     let item = document.createElement("img");
                     item.setAttribute('src', image);
                     item.setAttribute('width', '400px');
+                    item.setAttribute('height', '250px');
                     let titleSection = document.createElement("p");
                     titleSection.innerHTML = title +"   "+ t1 +" 对战 "+ t2;
                     titleSection.setAttribute('style', 'color: white')
