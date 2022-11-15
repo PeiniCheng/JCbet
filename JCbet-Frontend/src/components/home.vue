@@ -31,7 +31,7 @@
           </iframe>
         </div>
         <div class="col" style="background-color: rgba(0,0,0,0.7)">
-          <h3 style="color:whitesmoke; padding-top: 10px">排行榜</h3>
+          <h3 style="color:whitesmoke; padding-top: 10px">J币排行榜</h3>
             <div class="row" style="padding-top: 10px">
               <h4 style="color:whitesmoke; padding-top: 10px">大地球: {{user1.username}}</h4>
               <img v-bind:src="user1.profilePic" width="200" height="200">

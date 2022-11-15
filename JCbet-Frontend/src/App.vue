@@ -13,7 +13,7 @@
               </a>
             </li>
             <li class="nav-item">
-              余额：{{user.token}}
+              J币：{{user.token}}
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
