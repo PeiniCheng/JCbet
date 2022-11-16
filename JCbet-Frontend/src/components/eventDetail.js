@@ -13,6 +13,7 @@ export default {
             ratioA: "",
             ratioB: "",
             error: "",
+            isOpen: "",
             isLoading: false,
         };
     },
@@ -39,6 +40,12 @@ export default {
                 }else{
                     this.ratioA = aRatio;
                     this.ratioB = 1/aRatio;
+                }
+                let status = response.data.status;
+                if(status === "OPEN"){
+                    this.isOpen = true;
+                }else{
+                    this.isOpen = false;
                 }
             })
             .catch(e => {

@@ -80,6 +80,13 @@ public class EventController {
     return convertToDto(event);
   }
 
+  @PatchMapping(value = {"/event/{id}/setTeams", "/event/{id}/setTeams/"})
+  public EventDto updateEvent(@PathVariable("id") long id
+  ) throws IllegalArgumentException {
+    Event event = service.updateEvent(id);
+    return convertToDto(event);
+  }
+
   @DeleteMapping(value = {"/event/{id}", "/event/{id}/"})
   public void deleteEvent(@PathVariable("id") long id
   ) throws IllegalArgumentException {

@@ -108,6 +108,16 @@ public class EventService {
   }
 
   @Transactional
+  public Event updateEvent(long id)
+      throws IllegalArgumentException {
+    Event event = getEvent(id);
+    if(event.getEndTime() <= System.currentTimeMillis()){
+      event.setStatus(Event.EventState.CLOSE);
+    }
+    return eventRepository.save(event);
+  }
+
+  @Transactional
   public Event setEventTeams(long id, String teamAName, String teamBName)
       throws IllegalArgumentException {
     Event event = getEvent(id);
@@ -123,13 +133,6 @@ public class EventService {
     eventTeamRepository.save(eventTeamB);
     event.setTeamA(eventTeamA);
     event.setTeamB(eventTeamB);
-    return eventRepository.save(event);
-  }
-
-  @Transactional
-  public Event closeEvent(long id) throws IllegalArgumentException {
-    Event event = getEvent(id);
-    event.setStatus(Event.EventState.CLOSE);
     return eventRepository.save(event);
   }
 
