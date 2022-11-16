@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import peini.jcbet.dao.EventRepository;
 import peini.jcbet.dao.EventTeamRepository;
 import peini.jcbet.dao.TeamRepository;
+import peini.jcbet.model.Bet;
 import peini.jcbet.model.Event;
 import peini.jcbet.model.EventTeam;
 import peini.jcbet.model.Team;
@@ -60,6 +61,26 @@ public class EventService {
       throw new IllegalArgumentException("Event does not exist!");
     }
     return event.get();
+  }
+
+  @Transactional
+  public Bet getBet(long id, String email) throws IllegalArgumentException {
+    Optional<Event> event = eventRepository.findById(id);
+    if (event.isEmpty()) {
+      throw new IllegalArgumentException("Event does not exist!");
+    }
+    Event e = event.get();
+    for(Bet bet: e.getTeamA().getBetList()){
+      if (bet.getUser().getEmail().equals(email)){
+        return bet;
+      }
+    }
+    for(Bet bet: e.getTeamB().getBetList()){
+      if (bet.getUser().getEmail().equals(email)){
+        return bet;
+      }
+    }
+    return null;
   }
 
   @Transactional

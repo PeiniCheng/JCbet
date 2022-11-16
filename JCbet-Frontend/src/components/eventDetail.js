@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import { ref } from "vue";
+import {store} from "@/state";
 export default {
     name: "eventDetail",
     data(){
@@ -12,14 +13,32 @@ export default {
             teamB: "",
             ratioA: "",
             ratioB: "",
+            user: "",
+            bet: "",
+            participated: false,
             error: "",
             isOpen: "",
             isLoading: false,
         };
     },
+    setup() {
+        const token = ref(0);
+        return { token };
+    },
     created: function(){
         let self = this;
         this.event_id = self.$route.params.id;
+        axios.get("/user/".concat(store.state.email))
+            .then(response => {
+                this.user = response.data;
+            })
+            .catch(e => {
+                let errorMsg = e.response.data.message;
+                console.log(errorMsg);
+            })
+            .finally(() => {
+                this.isLoading = false;
+            });
         axios.get("/event/".concat(this.event_id))
             .then(response => {
                 this.title = response.data.title;
@@ -53,5 +72,22 @@ export default {
                 console.log(errorMsg);
                 this.error = errorMsg;
             })
+        axios.get("/event/".concat(this.event_id).concat("/getBet"),{},{
+            params: {
+                email: store.state.email
+            }})
+            .then(response => {
+                if(response.data.user === store.state.email){
+                    this.bet = response.data;
+                    this.participated = true;
+                }
+            })
+            .catch(e => {
+                let errorMsg = e.response.data.message;
+                console.log(errorMsg);
+            })
+            .finally(() => {
+                this.isLoading = false;
+            });
     }
 }

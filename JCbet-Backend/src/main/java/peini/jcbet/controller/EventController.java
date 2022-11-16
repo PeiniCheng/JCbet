@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import peini.jcbet.dto.BetDto;
 import peini.jcbet.dto.EventDto;
 import peini.jcbet.model.Event;
 import peini.jcbet.service.EventService;
@@ -33,6 +34,11 @@ public class EventController {
   public EventDto getEvent(@PathVariable("id") long id) {
     service.updateEvent(id);
     return convertToDto(service.getEvent(id));
+  }
+
+  @GetMapping(value = {"/event/{id}/getBet", "/event/{id}/getBet/"})
+  public BetDto getEvent(@PathVariable("id") long id, @RequestParam String email) {
+    return convertToDto(service.getBet(id, email));
   }
 
   @PostMapping(value = {"/event/{title}", "/event/{title}/"})

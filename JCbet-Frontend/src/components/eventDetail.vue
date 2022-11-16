@@ -37,7 +37,32 @@
         <h3 style="text-align: center; color: whitesmoke">{{ratioB}}</h3>
       </div>
     </div>
-    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px">
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
+      <h6 style="text-align: right; color: indianred">数据有较大误差，最终解释权归管理员所有</h6>
+    </div>
+    <hr style="color:#cccccc; border-width: 3px;">
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!participated">
+      <h1 style="text-align: center; color: whitesmoke">还等什么？立刻下注</h1>
+    </div>
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!participated">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1" style="color:whitesmoke;">
+          {{ teamA }}
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2" style="color:whitesmoke;">
+          {{ teamB }}
+        </label>
+      </div>
+    </div>
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!participated">
+      <label for="customRange2" class="form-label" style="color:whitesmoke;">下注金额：{{token}} J币</label>
+      <input type="range" class="form-range" min="1" v-bind:max="user.token" id="customRange2" v-model="token">
+    </div>
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px" v-show="!participated">
       <p class = "col-10" style="color: red">{{ error }}</p>
       <div class="col-2">
         <button
