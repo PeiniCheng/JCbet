@@ -24,7 +24,7 @@ public class EventTeam {
   @OneToOne(fetch = FetchType.EAGER)
   private Event event;
 
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+  @OneToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
   private List<Bet> betList;
 
   public enum Result {

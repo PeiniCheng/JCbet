@@ -109,7 +109,7 @@ public class UserService {
   public void deleteUser(String email) throws IllegalArgumentException {
     User user = getUser(email);
     for (Bet bet : user.getBetList()) {
-      bet.getChoice().removeBet(bet);
+      if(bet.getChoice() != null) bet.getChoice().removeBet(bet);
       betRepository.delete(bet);
     }
     userRepository.delete(user);
