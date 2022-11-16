@@ -4,8 +4,8 @@
   <div class="col"
        style="margin-left: auto; margin-right: auto; padding-top: 20px; padding-bottom: 20px; max-width: 800px; min-height: 200px; line-height: 50px;background-color: rgba(0,0,0,0.7)">
     <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
-      <h2 v-show="isOpen" style="text-align: center; color: whitesmoke">进行中</h2>
-      <h2 v-show="!isOpen" style="text-align: center; color: whitesmoke">已结束</h2>
+      <h2 v-show="isOpen" style="text-align: center; color: whitesmoke; background-color: darkseagreen">进行中</h2>
+      <h2 v-show="!isOpen" style="text-align: center; color: whitesmoke; background-color: #ff2b3e">已结束</h2>
     </div>
     <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
          <img id="event_image" src="../assets/default.png" width="500" height="300">
