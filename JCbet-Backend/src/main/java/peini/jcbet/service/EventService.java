@@ -160,15 +160,22 @@ public class EventService {
   @Transactional
   public Event setEventResult(long eventId, long eventTeamId) throws IllegalArgumentException {
     Event event = getEvent(eventId);
+    double ratio = event.calculateOdds();
     EventTeam eventTeam = getEventTeam(eventTeamId);
     EventTeam teamA = event.getTeamA();
     EventTeam teamB = event.getTeamB();
     if (eventTeam.equals(teamA)) {
       teamA.setResult(EventTeam.Result.WIN);
       teamB.setResult(EventTeam.Result.LOSE);
+      for(Bet bet: teamA.getBetList()){
+        bet.getUser().addToken(bet.getToken() * (1 + ratio));
+      }
     } else {
       teamA.setResult(EventTeam.Result.LOSE);
       teamB.setResult(EventTeam.Result.WIN);
+      for(Bet bet: teamB.getBetList()){
+        bet.getUser().addToken(bet.getToken() * (1 + ratio));
+      }
     }
     eventTeamRepository.save(teamA);
     eventTeamRepository.save(teamB);

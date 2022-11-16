@@ -87,6 +87,13 @@ public class EventController {
     return convertToDto(event);
   }
 
+  @PatchMapping(value = {"/event/{id}/setWinner", "/event/{id}/setWinner/"})
+  public EventDto setEventWinner(@PathVariable("id") long id, @RequestParam long teamId
+  ) throws IllegalArgumentException {
+    Event event = service.setEventResult(id, teamId);
+    return convertToDto(event);
+  }
+
   @DeleteMapping(value = {"/event/{id}", "/event/{id}/"})
   public void deleteEvent(@PathVariable("id") long id
   ) throws IllegalArgumentException {

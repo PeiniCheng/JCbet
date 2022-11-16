@@ -45,10 +45,10 @@
       <h6 style="text-align: right; color: indianred">数据有较大误差，最终解释权归管理员所有</h6>
     </div>
     <hr style="color:#cccccc; border-width: 3px;">
-    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!participated">
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!participated && isOpen">
       <h1 style="text-align: center; color: whitesmoke">还等什么？立刻下注</h1>
     </div>
-    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!participated">
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!participated && isOpen">
       <div class="form-check">
         <input class="form-check-input" type="radio" name="choice" id="flexRadioDefault1" checked v-bind:value="teamA_id">
         <label class="form-check-label" for="flexRadioDefault1" style="color:whitesmoke;">
@@ -62,11 +62,11 @@
         </label>
       </div>
     </div>
-    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!participated">
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!participated && isOpen">
       <label for="customRange2" class="form-label" style="color:whitesmoke;">下注金额：{{token}} J币</label>
       <input type="range" class="form-range" min="1" v-bind:max="user.token" id="customRange2" v-model="token">
     </div>
-    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px" v-show="!participated">
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px" v-show="!participated && isOpen">
       <p class = "col-8" style="color: red">{{ error }}</p>
       <div class="col-4">
         <button
@@ -101,13 +101,14 @@
           type="button"
           id="proceed"
           aria-expanded="false"
+          v-show="isOpen"
       >
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
         修改金额
       </button>
       </div>
     </div>
-    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px" v-show="participated">
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px" v-show="participated && isOpen">
       <p class = "col-10" style="color: red">{{ error }}</p>
       <div class="col-2">
         <button
