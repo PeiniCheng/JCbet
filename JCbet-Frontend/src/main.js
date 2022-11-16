@@ -12,6 +12,7 @@ import {store} from "./state";
 import UpdateProfile from "@/components/updateProfile";
 import AddEvent from "@/components/addEvent.vue";
 import AddTeam from "@/components/addTeam.vue";
+import EventDetail from "@/components/eventDetail.vue";
 
 const routes = [
     {
@@ -41,6 +42,10 @@ const routes = [
     {
         path: "/addTeam",
         component: AddTeam
+    },
+    {
+        path: "/event/:id",
+        component: EventDetail
     }
 ];
 

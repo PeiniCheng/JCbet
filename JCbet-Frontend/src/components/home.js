@@ -1,5 +1,5 @@
+/* eslint-disable */
 import axios from "axios";
-
 export default {
     name: "home",
     data() {
@@ -39,6 +39,7 @@ export default {
                 this.error = errorMsg;
             })
             .finally(() => {
+                let self = this;
                 this.isLoading = false;
                 let group = document.getElementById("eventList");
                 this.events.forEach(function(event){
@@ -46,12 +47,14 @@ export default {
                     let title = event.title;
                     let t1 = event.teamA.team.name;
                     let t2 = event.teamB.team.name;
+                    let id = event.id;
                     let section = document.createElement("div");
                     section.setAttribute('padding', '10px');
                     let item = document.createElement("img");
                     item.setAttribute('src', image);
                     item.setAttribute('width', '400px');
                     item.setAttribute('height', '250px');
+                    item.onclick = function(){self.$router.push({path: '/event/' + id})};
                     let titleSection = document.createElement("p");
                     titleSection.innerHTML = title +"   "+ t1 +" 对战 "+ t2;
                     titleSection.setAttribute('style', 'color: white')
