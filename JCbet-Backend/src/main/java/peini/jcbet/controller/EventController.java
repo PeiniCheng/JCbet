@@ -31,6 +31,7 @@ public class EventController {
 
   @GetMapping(value = {"/event/{id}", "/event/{id}/"})
   public EventDto getEvent(@PathVariable("id") long id) {
+    service.updateEvent(id);
     return convertToDto(service.getEvent(id));
   }
 
@@ -77,13 +78,6 @@ public class EventController {
                                 @RequestParam String newTeamB
   ) throws IllegalArgumentException {
     Event event = service.setEventTeams(id, newTeamA, newTeamB);
-    return convertToDto(event);
-  }
-
-  @PatchMapping(value = {"/event/{id}/setTeams", "/event/{id}/setTeams/"})
-  public EventDto updateEvent(@PathVariable("id") long id
-  ) throws IllegalArgumentException {
-    Event event = service.updateEvent(id);
     return convertToDto(event);
   }
 
