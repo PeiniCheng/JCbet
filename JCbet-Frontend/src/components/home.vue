@@ -1,5 +1,9 @@
 <template>
   <body>
+  <button class="btn btn-light" type="button" disabled v-show="isLoading">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
+    服务器响应较慢，请耐心等待
+  </button>
   <div class="container-fluid">
       <div class="sidebar">
         <div class = "row justify-content-center" style = "background-color: rgba(0,0,0,0.7); ">

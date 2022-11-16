@@ -1,5 +1,9 @@
 <template>
 <body>
+<button class="btn btn-light" type="button" disabled v-show="isLoading">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
+  服务器响应较慢，请耐心等待
+</button>
 <div style="height: 100%; padding-top: 50px; text-align: left">
   <div class="col"
        style="margin-left: auto; margin-right: auto; padding-top: 20px; padding-bottom: 20px; max-width: 800px; min-height: 200px; line-height: 50px;background-color: rgba(0,0,0,0.7)">
@@ -46,13 +50,13 @@
     </div>
     <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!participated">
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <input class="form-check-input" type="radio" name="choice" id="flexRadioDefault1" checked v-bind:value="teamA_id">
         <label class="form-check-label" for="flexRadioDefault1" style="color:whitesmoke;">
           {{ teamA }}
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <input class="form-check-input" type="radio" name="choice" id="flexRadioDefault2" v-bind:value="teamB_id">
         <label class="form-check-label" for="flexRadioDefault2" style="color:whitesmoke;">
           {{ teamB }}
         </label>
@@ -63,16 +67,58 @@
       <input type="range" class="form-range" min="1" v-bind:max="user.token" id="customRange2" v-model="token">
     </div>
     <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px" v-show="!participated">
-      <p class = "col-10" style="color: red">{{ error }}</p>
-      <div class="col-2">
+      <p class = "col-8" style="color: red">{{ error }}</p>
+      <div class="col-4">
         <button
             class="btn btn-outline-warning"
             type="button"
             id="proceed"
             aria-expanded="false"
+            @click="createBet()"
         >
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
           下注（建造中）
+        </button>
+      </div>
+    </div>
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="participated">
+      <h1 style="text-align: center; color: whitesmoke">您的赌注：</h1>
+    </div>
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="participated">
+      <label style="color:whitesmoke;" class="col-2">您的战队：</label>
+      <div class="col-10">
+        <img id="bet_image" src="../assets/default.png" width="100" height="100" style="margin-left: auto;
+  margin-right: auto;display: block">
+        <h4 style="text-align: center; color: whitesmoke">{{bet}}</h4>
+      </div>
+    </div>
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="participated">
+      <label style="color:whitesmoke;" class="col-2">赌注金额：</label>
+      <h4 style="text-align: center; color: whitesmoke" class="col-8">{{bet_amount}} J币</h4>
+      <div class="col-2">
+      <button
+          class="btn btn-outline-warning"
+          type="button"
+          id="proceed"
+          aria-expanded="false"
+      >
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
+        修改金额
+      </button>
+      </div>
+    </div>
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px" v-show="participated">
+      <p class = "col-10" style="color: red">{{ error }}</p>
+      <div class="col-2">
+        <button
+            class="btn btn-outline-danger"
+            type="button"
+            id="proceed"
+            aria-expanded="false"
+            @click="deleteBet()"
+        >
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
+          取消赌注
         </button>
       </div>
     </div>

@@ -60,8 +60,10 @@ public class BetService {
   @Transactional
   public void deleteBet(long betId) throws IllegalArgumentException {
     Optional<Bet> bet = betRepository.findById(betId);
-    bet.get().getUser().removeBet(bet.get());
-    bet.get().getChoice().removeBet(bet.get());
+    Bet b = bet.get();
+    b.getUser().removeBet(bet.get());
+    b.getChoice().removeBet(bet.get());
+    b.getUser().addToken(b.getToken());
     betRepository.delete(bet.get());
   }
 
@@ -79,7 +81,7 @@ public class BetService {
   private EventTeam getEventTeam(long id) throws IllegalArgumentException {
     Optional<EventTeam> eventTeam = eventTeamRepository.findById(id);
     if (eventTeam.isEmpty()) {
-      throw new IllegalArgumentException("Event does not exist!");
+      throw new IllegalArgumentException("Team does not exist!");
     }
     return eventTeam.get();
   }
