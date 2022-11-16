@@ -32,13 +32,29 @@
         <img id="teamA_image" src="../assets/default.png" width="100" height="100" style="margin-left: auto;
   margin-right: auto;display: block">
         <h4 style="text-align: center; color: whitesmoke">{{teamA}}</h4>
-        <h3 style="text-align: center; color: whitesmoke">{{ratioA}}</h3>
       </div>
       <div class="col-5">
         <img id="teamB_image" src="../assets/default.png" width="100" height="100" style="margin-left: auto;
   margin-right: auto;display: block">
         <h4 style="text-align: center; color: whitesmoke">{{teamB}}</h4>
+      </div>
+    </div>
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
+      <label style="color:whitesmoke;" class="col-2">赔率</label>
+      <div class="col-5">
+        <h3 style="text-align: center; color: whitesmoke">{{ratioA}}</h3>
+      </div>
+      <div class="col-5">
         <h3 style="text-align: center; color: whitesmoke">{{ratioB}}</h3>
+      </div>
+    </div>
+    <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="!isOpen">
+      <label style="color:whitesmoke;" class="col-2">比赛结果</label>
+      <div class="col-5">
+        <h3 style="text-align: center; color: whitesmoke">{{teamA_result}}</h3>
+      </div>
+      <div class="col-5">
+        <h3 style="text-align: center; color: whitesmoke">{{teamB_result}}</h3>
       </div>
     </div>
     <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
@@ -95,18 +111,6 @@
     <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px;" v-show="participated">
       <label style="color:whitesmoke;" class="col-2">赌注金额：</label>
       <h4 style="text-align: center; color: whitesmoke" class="col-8">{{bet_amount}} J币</h4>
-      <div class="col-2">
-      <button
-          class="btn btn-outline-warning"
-          type="button"
-          id="proceed"
-          aria-expanded="false"
-          v-show="isOpen"
-      >
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
-        修改金额
-      </button>
-      </div>
     </div>
     <div class="row" style="padding-left: 30px; padding-right: 30px; padding-top: 20px" v-show="participated && isOpen">
       <p class = "col-10" style="color: red">{{ error }}</p>

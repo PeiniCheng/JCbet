@@ -11,8 +11,10 @@ export default {
             end_time: "",
             teamA: "",
             teamA_id: "",
+            teamA_result: "",
             teamB: "",
             teamB_id: "",
+            teamB_result: "",
             ratioA: "",
             ratioB: "",
             user: "",
@@ -52,8 +54,10 @@ export default {
                 this.end_time = new Date(response.data.endTime);
                 this.teamA = response.data.teamA.team.name;
                 this.teamA_id = response.data.teamA.id;
+                this.teamA_result = response.data.teamA.result;
                 this.teamB = response.data.teamB.team.name;
                 this.teamB_id = response.data.teamB.id;
+                this.teamB_result = response.data.teamB.result;
                 let imgsrcA = response.data.teamA.team.image;
                 document.querySelector('#teamA_image').setAttribute('src', imgsrcA);
                 let imgsrcB = response.data.teamB.team.image;

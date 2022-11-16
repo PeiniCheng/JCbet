@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import peini.jcbet.dao.BetRepository;
 import peini.jcbet.dao.EventRepository;
 import peini.jcbet.dao.EventTeamRepository;
 import peini.jcbet.dao.TeamRepository;
@@ -24,6 +25,9 @@ public class EventService {
 
   @Autowired
   EventTeamRepository eventTeamRepository;
+
+  @Autowired
+  BetRepository betRepository;
 
   @Transactional
   public Event createEvent(String title, String description, String image, long endTime,
@@ -191,8 +195,18 @@ public class EventService {
     if (event.get().getStatus() == Event.EventState.CLOSE) {
       throw new IllegalArgumentException("Event already closed");
     }
-    eventTeamRepository.delete(event.get().getTeamA());
-    eventTeamRepository.delete(event.get().getTeamB());
+    EventTeam teamA = event.get().getTeamA();
+    for(Bet bet : teamA.getBetList()){
+      bet.setChoice(null);
+      betRepository.delete(bet);
+    }
+    EventTeam teamB = event.get().getTeamB();
+    for(Bet bet : teamB.getBetList()){
+      bet.setChoice(null);
+      betRepository.delete(bet);
+    }
+    eventTeamRepository.delete(teamA);
+    eventTeamRepository.delete(teamB);
     eventRepository.delete(event.get());
   }
 
