@@ -192,9 +192,6 @@ public class EventService {
     if (event.isEmpty()) {
       throw new IllegalArgumentException("Event does not exist!");
     }
-    if (event.get().getStatus() == Event.EventState.CLOSE) {
-      throw new IllegalArgumentException("Event already closed");
-    }
     EventTeam teamA = event.get().getTeamA();
     for(Bet bet : teamA.getBetList()){
       bet.setChoice(null);
