@@ -1,4 +1,3 @@
-/* eslint-disable */
 import axios from "axios";
 export default {
     name: "home",
@@ -28,6 +27,7 @@ export default {
             })
     },
     mounted: function(){
+        let self = this;
         this.isLoading = true;
         axios.get("/event/")
             .then(response => {
@@ -39,7 +39,6 @@ export default {
                 this.error = errorMsg;
             })
             .finally(() => {
-                let self = this;
                 this.isLoading = false;
                 let group = document.getElementById("eventList");
                 this.events.forEach(function(event){
