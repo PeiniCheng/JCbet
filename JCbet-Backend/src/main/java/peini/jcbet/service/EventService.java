@@ -194,12 +194,12 @@ public class EventService {
     }
     EventTeam teamA = event.get().getTeamA();
     for(Bet bet : teamA.getBetList()){
-      bet.setChoice(null);
+      bet.getUser().removeBet(bet);
       betRepository.delete(bet);
     }
     EventTeam teamB = event.get().getTeamB();
     for(Bet bet : teamB.getBetList()){
-      bet.setChoice(null);
+      bet.getUser().removeBet(bet);
       betRepository.delete(bet);
     }
     eventTeamRepository.delete(teamA);
