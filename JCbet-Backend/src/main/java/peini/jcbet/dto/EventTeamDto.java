@@ -7,9 +7,9 @@ public class EventTeamDto {
 
   private TeamDto team;
 
-  private String event;
+  private long event;
 
-  public EventTeamDto(long id, String result, TeamDto team, String event) {
+  public EventTeamDto(long id, String result, TeamDto team, long event) {
     this.id = id;
     this.result = result;
     this.team = team;
@@ -28,7 +28,7 @@ public class EventTeamDto {
     return team;
   }
 
-  public String getEvent() {
+  public long getEvent() {
     return event;
   }
 }

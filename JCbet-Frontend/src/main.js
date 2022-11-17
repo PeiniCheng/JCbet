@@ -13,6 +13,7 @@ import UpdateProfile from "@/components/updateProfile";
 import AddEvent from "@/components/addEvent.vue";
 import AddTeam from "@/components/addTeam.vue";
 import EventDetail from "@/components/eventDetail.vue";
+import History from "@/components/history.vue";
 
 const routes = [
     {
@@ -46,6 +47,10 @@ const routes = [
     {
         path: "/event/:id",
         component: EventDetail
+    },
+    {
+        path: "/history",
+        component: History
     }
 ];
 

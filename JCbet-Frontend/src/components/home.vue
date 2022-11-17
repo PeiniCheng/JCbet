@@ -32,16 +32,16 @@
         <div class="col" id="ranking">
           <h3 style="color:whitesmoke; padding-top: 10px">J币排行榜</h3>
             <div class="row" style="padding-top: 10px">
-              <h4 style="color:whitesmoke; padding-top: 10px">大地球: {{user1.username}}</h4>
+              <h4 style="color:whitesmoke; padding-top: 10px">{{user1.token}} J币: {{user1.username}}</h4>
               <img v-bind:src="user1.profilePic" width="200" height="200">
             </div>
             <div class="row">
               <div class="col">
-                <h6 style="color:whitesmoke; padding-top: 10px">小地球: {{user2.username}}</h6>
+                <h6 style="color:whitesmoke; padding-top: 10px">{{user2.token}} J币: {{user2.username}}</h6>
                 <img v-bind:src="user2.profilePic" width="90" height="90">
               </div>
               <div class="col">
-                <h6 style="color:whitesmoke; padding-top: 10px">老鹰: {{user3.username}}</h6>
+                <h6 style="color:whitesmoke; padding-top: 10px">{{user3.token}} J币: {{user3.username}}</h6>
                 <img v-bind:src="user3.profilePic" width="80" height="80">
               </div>
             </div>

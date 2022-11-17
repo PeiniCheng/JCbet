@@ -24,7 +24,11 @@
                 <router-link to="/updateProfile">
                   <li><a class="dropdown-item">个人资料</a></li>
                 </router-link>
-                <li><a class="dropdown-item">历史记录</a></li>
+                <li>
+                  <router-link to="/history">
+                  <a class="dropdown-item">历史记录</a>
+                  </router-link>
+                </li>
                 <li>
                   <router-link to="/">
                     <a class="dropdown-item" @click="logout()">登出</a>
