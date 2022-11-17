@@ -63,12 +63,13 @@ export default {
                 let imgsrcB = response.data.teamB.team.image;
                 document.querySelector('#teamB_image').setAttribute('src', imgsrcB);
                 let aRatio = response.data.ratio;
-                if(aRatio == -1){
+                if(aRatio == 0){
                     this.ratioA = "数据暂不可用";
                     this.ratioB = "数据暂不可用";
                 }else{
-                    this.ratioA = aRatio;
-                    this.ratioB = 1/aRatio;
+                    console.log(aRatio)
+                    this.ratioA = Math.round( (aRatio + 1) * 100 + Number.EPSILON ) / 100
+                    this.ratioB = Math.round( (1/aRatio+ 1) * 100 + Number.EPSILON ) / 100
                 }
                 let status = response.data.status;
                 if(status === "OPEN"){

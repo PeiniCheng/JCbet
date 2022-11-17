@@ -104,7 +104,7 @@ public class Event {
       b+= bet.getToken();
     }
     if(a==0 || b==0){
-      return -1;
+      return 0;
     }else{
       return (double)b/a;
     }

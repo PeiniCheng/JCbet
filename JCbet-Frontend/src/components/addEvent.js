@@ -48,7 +48,9 @@ export default {
             let teamA = a.options[a.selectedIndex].text;
             let b = document.getElementById("teamB");
             let teamB = b.options[b.selectedIndex].text;
-            let time = document.getElementById("endTime").valueAsNumber;
+            let s = document.getElementById("endTime").value;
+            let startDate = new Date(s.replace(/-/g,'/').replace('T',' ')).getTime();
+            console.log(startDate);
             this.error = "";
             if (title === "") {
                 this.error = "请填写标题";
@@ -60,7 +62,7 @@ export default {
                     params: {
                         description: this.description,
                         image: this.image,
-                        endTime: time,
+                        endTime: startDate,
                         teamAName: teamA,
                         teamBName: teamB,
                     }

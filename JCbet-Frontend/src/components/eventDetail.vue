@@ -93,7 +93,7 @@
             @click="createBet()"
         >
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-show="isLoading"></span>
-          下注（建造中）
+          下注
         </button>
       </div>
     </div>
