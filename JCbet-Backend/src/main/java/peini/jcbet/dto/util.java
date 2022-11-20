@@ -61,7 +61,7 @@ public class util {
     }
     EventTeamDto betDto =
         new EventTeamDto(et.getId(), et.getResult().name(), convertToDto(et.getTeam()),
-            et.getEvent().getId());
+            et.getEvent().getId(), et.getEvent().getTitle());
     return betDto;
   }
 

@@ -23,7 +23,7 @@ export default {
                 this.isLoading = false;
                 let group = document.getElementById("eventList");
                 this.betList.forEach(function (bet) {
-                    let image = event.image;
+                    let image = bet.;
                     let title = event.title;
                     let t1 = event.teamA.team.name;
                     let t2 = event.teamB.team.name;

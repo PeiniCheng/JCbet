@@ -7,13 +7,15 @@ public class EventTeamDto {
 
   private TeamDto team;
 
-  private long event;
+  private long eventId;
 
-  public EventTeamDto(long id, String result, TeamDto team, long event) {
+  private String eventTitle;
+  public EventTeamDto(long id, String result, TeamDto team, long eventId, String eventTitle) {
     this.id = id;
     this.result = result;
     this.team = team;
-    this.event = event;
+    this.eventId = eventId;
+    this.eventTitle = eventTitle;
   }
 
   public long getId() {
@@ -28,7 +30,11 @@ public class EventTeamDto {
     return team;
   }
 
-  public long getEvent() {
-    return event;
+  public long getEventId() {
+    return eventId;
+  }
+
+  public String getEventTitle() {
+    return eventTitle;
   }
 }
