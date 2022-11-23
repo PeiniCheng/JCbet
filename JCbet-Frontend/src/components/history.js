@@ -8,7 +8,6 @@ export default {
         };
     },
     mounted: function () {
-        let self = this;
         this.isLoading = true;
         axios.get("/user/".concat(store.state.email))
             .then(response => {
@@ -23,24 +22,14 @@ export default {
                 this.isLoading = false;
                 let group = document.getElementById("eventList");
                 this.betList.forEach(function (bet) {
-                    let image = bet.;
-                    let title = event.title;
-                    let t1 = event.teamA.team.name;
-                    let t2 = event.teamB.team.name;
-                    let id = event.id;
+                    let choice = bet.choice;
+                    console.log(choice);
+                    let token = bet.token;
                     let section = document.createElement("div");
                     section.setAttribute('padding', '10px');
-                    let item = document.createElement("img");
-                    item.setAttribute('src', image);
-                    item.setAttribute('width', '400px');
-                    item.setAttribute('height', '250px');
-                    item.onclick = function () {
-                        self.$router.push({path: '/event/' + id})
-                    };
-                    let titleSection = document.createElement("p");
-                    titleSection.innerHTML = title + "   " + t1 + " 对战 " + t2;
+                    let titleSection = document.createElement("h2");
+                    titleSection.innerHTML = choice.eventTitle + ": " +choice.team.name+ " "+ token + " J币";
                     titleSection.setAttribute('style', 'color: white')
-                    section.appendChild(item);
                     section.appendChild(titleSection);
                     group.appendChild(section);
                 })

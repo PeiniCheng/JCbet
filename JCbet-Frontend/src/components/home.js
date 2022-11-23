@@ -17,8 +17,11 @@ export default {
             .then(response => {
                 let users = response.data;
                 this.user1 = users[0];
+                this.user1.token = Math.round( this.user1.token * 100 + Number.EPSILON ) / 100
                 this.user2 = users[1];
+                this.user2.token = Math.round( this.user2.token * 100 + Number.EPSILON ) / 100
                 this.user3 = users[2];
+                this.user3.token = Math.round( this.user3.token * 100 + Number.EPSILON ) / 100
             })
             .catch(e => {
                 let errorMsg = e.response.data.message;

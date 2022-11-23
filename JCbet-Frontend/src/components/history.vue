@@ -13,7 +13,7 @@
   </body>
 </template>
 
-<script>
+<script src="./history.js">
 </script>
 
 <style scoped>

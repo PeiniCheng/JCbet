@@ -187,6 +187,20 @@ public class EventService {
   }
 
   @Transactional
+  public Event setEventDraw(long eventId) throws IllegalArgumentException {
+    Event event = getEvent(eventId);
+    EventTeam teamA = event.getTeamA();
+    EventTeam teamB = event.getTeamB();
+      for(Bet bet: teamA.getBetList()){
+        bet.getUser().addToken(bet.getToken());
+      }
+      for(Bet bet: teamB.getBetList()){
+        bet.getUser().addToken(bet.getToken());
+      }
+    return eventRepository.save(event);
+  }
+
+  @Transactional
   public void deleteEvent(long id) throws IllegalArgumentException {
     Optional<Event> event = eventRepository.findById(id);
     if (event.isEmpty()) {
