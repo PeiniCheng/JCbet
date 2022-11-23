@@ -178,7 +178,7 @@ public class EventService {
       teamA.setResult(EventTeam.Result.LOSE);
       teamB.setResult(EventTeam.Result.WIN);
       for(Bet bet: teamB.getBetList()){
-        bet.getUser().addToken(bet.getToken() * (1 + ratio));
+        bet.getUser().addToken(bet.getToken() * (1 + (1 - ratio)));
       }
     }
     eventTeamRepository.save(teamA);
