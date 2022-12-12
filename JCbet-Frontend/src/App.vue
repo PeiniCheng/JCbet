@@ -18,7 +18,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ user.username }}
-                <img src="./assets/default.png" class="avatar" width="30" height="30">
+                <img src="./assets/default.png" class="avatar rounded" width="30" height="30">
               </a>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <router-link to="/updateProfile">
@@ -70,6 +70,7 @@ html, body {
 
 nav {
   height: 8vh;
+  border-bottom: 2px solid #ffbc00;
 }
 
 ul {
