@@ -48,6 +48,12 @@ public class UserController {
     return convertToDto(service.getUser(email));
   }
 
+  @GetMapping(value = {"/user/{email}/daily", "/user/{email}/daily/"})
+  public boolean isDailyValid(@PathVariable("email") String email)
+      throws IllegalArgumentException {
+    return service.isDailyValid(email);
+  }
+
   @PatchMapping(value = {"/user/{email}/username", "/user/{email}/username/"})
   public UserDto updateUsername(@PathVariable("email") String email,
                                 @RequestParam String newName)

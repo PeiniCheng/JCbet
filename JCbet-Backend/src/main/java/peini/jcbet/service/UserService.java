@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import peini.jcbet.dao.BetRepository;
+import peini.jcbet.dao.DailyRepository;
 import peini.jcbet.dao.UserRepository;
 import peini.jcbet.model.Bet;
+import peini.jcbet.model.Daily;
 import peini.jcbet.model.User;
 
 @Service
@@ -17,6 +19,9 @@ public class UserService {
   UserRepository userRepository;
   @Autowired
   BetRepository betRepository;
+
+  @Autowired
+  DailyRepository dailyRepository;
 
   @Transactional
   public User getUser(String email) throws IllegalArgumentException {
@@ -28,6 +33,16 @@ public class UserService {
       throw new IllegalArgumentException("User does not exist!");
     }
     return user;
+  }
+
+  @Transactional
+  public Daily getDaily(User user){
+    Daily daily = dailyRepository.findDailyByUser(user);
+    if(daily == null){
+      daily = new Daily(user);
+      dailyRepository.save(daily);
+    }
+    return daily;
   }
 
 
@@ -113,6 +128,12 @@ public class UserService {
       betRepository.delete(bet);
     }
     userRepository.delete(user);
+  }
+
+  public boolean isDailyValid(String email){
+    User user = getUser(email);
+    Daily daily = getDaily(user);
+    return daily.isValid();
   }
 
   @Transactional
