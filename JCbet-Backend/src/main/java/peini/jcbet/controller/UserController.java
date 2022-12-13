@@ -54,6 +54,12 @@ public class UserController {
     return service.isDailyValid(email);
   }
 
+  @PatchMapping(value = {"/user/{email}/claim", "/user/{email}/claim/"})
+  public void claimDaily(@PathVariable("email") String email)
+      throws IllegalArgumentException {
+    service.claim(email);
+  }
+
   @PatchMapping(value = {"/user/{email}/username", "/user/{email}/username/"})
   public UserDto updateUsername(@PathVariable("email") String email,
                                 @RequestParam String newName)

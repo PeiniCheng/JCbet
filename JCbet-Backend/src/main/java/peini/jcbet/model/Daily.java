@@ -17,12 +17,24 @@ public class Daily {
   @OneToOne
   private User user;
 
+  public Daily(){
+
+  }
   public Daily(User user){
     this.miliseconds = 0;
     this.user = user;
   }
 
   public boolean isValid(){
-    return currentTimeMillis() - this.miliseconds > 6000;
+    System.out.println(currentTimeMillis());
+    System.out.println(this.miliseconds);
+    return currentTimeMillis() - this.miliseconds > 86400000;
+  }
+
+  public void claim(){
+    if(isValid()){
+      user.addToken(1);
+      this.miliseconds = currentTimeMillis();
+    }
   }
 }

@@ -136,6 +136,13 @@ public class UserService {
     return daily.isValid();
   }
 
+  public void claim(String email){
+    User user = getUser(email);
+    Daily daily = getDaily(user);
+    daily.claim();
+    dailyRepository.save(daily);
+  }
+
   @Transactional
   public List<User> getAllUsers() {
     ArrayList<User> userList = userRepository.findAllByOrderByUsername();
