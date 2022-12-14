@@ -14,6 +14,7 @@
             </li>
             <li class="nav-item">
               J币：{{user.token}}
+                <span class="badge rounded-pill bg-warning" @click="claim()" v-show="valid">+1</span>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,16 +25,16 @@
                 <router-link to="/updateProfile">
                   <li><a class="dropdown-item">个人资料</a></li>
                 </router-link>
-                <li>
                   <router-link to="/history">
-                  <a class="dropdown-item">历史记录</a>
+                    <li>
+                    <a class="dropdown-item">历史记录</a>
+                    </li>
                   </router-link>
-                </li>
-                <li>
                   <router-link to="/">
+                    <li>
                     <a class="dropdown-item" @click="logout()">登出</a>
+                    </li>
                   </router-link>
-                </li>
               </ul>
             </li>
           </ul>

@@ -29,8 +29,6 @@ export const store = createStore({
             state.email = "";
             state.username = "";
             state.loggedIn = false;
-        },
-        print() {
         }
     }
 })

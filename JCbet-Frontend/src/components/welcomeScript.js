@@ -33,7 +33,7 @@ export default {
                             let username = response.data.username;
                             store.commit('login', {email, username});
                             self.isLoading = false;
-                            self.$router.push({path: '/home'});
+                            window.location.reload();
                         } else {
                             self.error = "密码错误，如忘记密码请联系管理员";
                             self.isLoading = false;

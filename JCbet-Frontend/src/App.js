@@ -5,7 +5,8 @@ export default {
     data() {
         return {
             user: "",
-            store: store
+            store: store,
+            valid: false,
         }
     },
     created: function () {
@@ -15,6 +16,7 @@ export default {
                 this.user = response.data;
                 let imgsrc = this.user.profilePic;
                 document.querySelector('.avatar').setAttribute('src', imgsrc);
+                console.log(this.user);
             })
             .catch(e => {
                 let errorMsg = e.response.data.message;
@@ -23,10 +25,29 @@ export default {
             .finally(() => {
                 this.isLoading = false;
             });
+        axios.get("/user/".concat(store.state.email).concat("/daily"))
+            .then(response => {
+                this.valid = response.data;
+            })
+            .catch(e => {
+                let errorMsg = e.response.data.message;
+                console.log(errorMsg);
+            });
+    },
+    mounted() {
     },
     methods: {
         logout() {
             store.commit('logout');
+        },
+        claim(){
+            axios.patch(
+                "/user/".concat(store.state.email).concat("/claim"),
+                {},
+                {
+                }
+            ).then(() =>{window.location.reload();}
+            )
         }
     }
 }

@@ -127,6 +127,8 @@ public class UserService {
       if(bet.getChoice() != null) bet.getChoice().removeBet(bet);
       betRepository.delete(bet);
     }
+    Daily daily = getDaily(user);
+    dailyRepository.delete(daily);
     userRepository.delete(user);
   }
 
